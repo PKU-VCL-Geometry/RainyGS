@@ -245,34 +245,46 @@
 </section>
 
 
+
+<!-- ========================== MipNeRF360 Section ========================== -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Visual Results:  MipNeRF360</h2>
+    <h2 class="title is-3">Visual Results: MipNeRF360</h2>
     <div class="content has-text-justified">
       <p>
-        <b>Rain synthesis results on MipNeRF360 dataset.</b> Our approach achieves high-quality, realistic rain effects, including rain 
-        streaks in the sky, water accumulation on surfaces, and reflection and refraction, etc., in a computationally efficient manner.
+        <b>Rain synthesis results on MipNeRF360 dataset.</b> Our approach achieves high-quality, realistic rain effects, 
+        including rain streaks in the sky, water accumulation on surfaces, and reflection and refraction, etc., 
+        in a computationally efficient manner.
       </p>
     </div>
     <div class="columns is-centered">
+
+      <!-- ========== Example: treehill ========== -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
               <div id="treehill" class="bal-container-small">
+
                 <div class="bal-after">
-                  <video id="video1" autoplay muted loop playsinline height="100%">
+                  <!-- 去掉 autoplay，加入 preload -->
+                  <video muted loop playsinline preload="auto" height="100%">
                     <source src="./static/example_videos/treehill/renders.mp4" type="video/mp4">
                   </video>
-                  <div class="bal-afterPosition afterLabel">RainyGS</div>
+                  <div class="bal-afterPosition afterLabel">
+                    RainyGS
+                  </div>
                 </div>
 
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video2" autoplay muted loop playsinline height="100%">
+                    <!-- 去掉 autoplay，加入 preload -->
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/example_videos/treehill/src.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">Original</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
                   </div>
                 </div>
 
@@ -280,30 +292,37 @@
                   <span class="handle-left-arrow"></span>
                   <span class="handle-right-arrow"></span>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
-
+      
+      <!-- ========== Example: bicycle ========== -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
               <div id="bicycle" class="bal-container-small">
+
                 <div class="bal-after">
-                  <video id="video3" autoplay muted loop playsinline height="100%">
+                  <video muted loop playsinline preload="auto" height="100%">
                     <source src="./static/example_videos/bicycle/renders.mp4" type="video/mp4">
                   </video>
-                  <div class="bal-afterPosition afterLabel">RainyGS</div>
+                  <div class="bal-afterPosition afterLabel">
+                    RainyGS
+                  </div>
                 </div>
 
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video4" autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/example_videos/bicycle/src.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">Original</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
                   </div>
                 </div>
 
@@ -311,43 +330,55 @@
                   <span class="handle-left-arrow"></span>
                   <span class="handle-right-arrow"></span>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
+
+<!-- ========================== Tanks and Temples Section ========================== -->
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Visual Results: Tanks and Temples</h2>
     <div class="content has-text-justified">
       <p>
         <b>Rain synthesis results on Tanks and Temples dataset.</b> Our method delivers high-quality and realistic rain effects, 
-        such as rain streaks in the sky, water pooling on surfaces, and realistic reflections and refractions, while maintaining computational efficiency.
+        such as rain streaks in the sky, water pooling on surfaces, and realistic reflections and refractions, 
+        while maintaining computational efficiency.
       </p>
     </div>
     <div class="columns is-centered">
+
+      <!-- ========== Example: family ========== -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
               <div id="family" class="bal-container-small2">
+
                 <div class="bal-after">
-                  <video id="video5" autoplay muted loop playsinline height="100%">
+                  <video muted loop playsinline preload="auto" height="100%">
                     <source src="./static/example_videos/family/renders.mp4" type="video/mp4">
                   </video>
-                  <div class="bal-afterPosition afterLabel">RainyGS</div>
+                  <div class="bal-afterPosition afterLabel">
+                    RainyGS
+                  </div>
                 </div>
 
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video6" autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/example_videos/family/src.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">Original</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
                   </div>
                 </div>
 
@@ -355,30 +386,37 @@
                   <span class="handle-left-arrow"></span>
                   <span class="handle-right-arrow"></span>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- ========== Example: truck ========== -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
               <div id="truck" class="bal-container-small2">
+
                 <div class="bal-after">
-                  <video id="video7" autoplay muted loop playsinline height="100%">
+                  <video muted loop playsinline preload="auto" height="100%">
                     <source src="./static/example_videos/truck/renders.mp4" type="video/mp4">
                   </video>
-                  <div class="bal-afterPosition afterLabel">RainyGS</div>
+                  <div class="bal-afterPosition afterLabel">
+                    RainyGS
+                  </div>
                 </div>
 
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video8" autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/example_videos/truck/src.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">Original</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
                   </div>
                 </div>
 
@@ -386,44 +424,57 @@
                   <span class="handle-left-arrow"></span>
                   <span class="handle-right-arrow"></span>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
+
+<!-- ========================== Waymo Scenes Section ========================== -->
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Visual Results: Waymo Scenes</h2>
     <div class="content has-text-justified">
       <p>
-        <b>Rainy Weather Synthesis for Waymo Scenes.</b> Our method facilitates the efficient transformation of continuous autonomous driving scenes into rainy weather conditions, enabling
-        robustness testing of autonomous driving perception algorithms. Additionally, it offers a novel framework for synthesizing adverse weather data in autonomous driving.
+        <b>Rainy Weather Synthesis for Waymo Scenes.</b> Our method facilitates the efficient transformation of 
+        continuous autonomous driving scenes into rainy weather conditions, enabling robustness testing of 
+        autonomous driving perception algorithms. Additionally, it offers a novel framework for synthesizing 
+        adverse weather data in autonomous driving.
       </p>
     </div>
 
     <div class="columns is-centered">
+
+      <!-- ========== Example: waymo181 ========== -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
               <div id="waymo181" class="bal-container-small3">
+
                 <div class="bal-after">
-                  <video id="video9" autoplay muted loop playsinline height="100%">
+                  <video muted loop playsinline preload="auto" height="100%">
                     <source src="./static/example_videos/waymo181/renders.mp4" type="video/mp4">
                   </video>
-                  <div class="bal-afterPosition afterLabel">RainyGS</div>
+                  <div class="bal-afterPosition afterLabel">
+                    RainyGS
+                  </div>
                 </div>
 
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video10" autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/example_videos/waymo181/src.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">Original</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
                   </div>
                 </div>
 
@@ -431,30 +482,37 @@
                   <span class="handle-left-arrow"></span>
                   <span class="handle-right-arrow"></span>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- ========== Example: waymo362 ========== -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
               <div id="waymo362" class="bal-container-small3">
+
                 <div class="bal-after">
-                  <video id="video11" autoplay muted loop playsinline height="100%">
+                  <video muted loop playsinline preload="auto" height="100%">
                     <source src="./static/example_videos/waymo362/renders.mp4" type="video/mp4">
                   </video>
-                  <div class="bal-afterPosition afterLabel">RainyGS</div>
+                  <div class="bal-afterPosition afterLabel">
+                    RainyGS
+                  </div>
                 </div>
 
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video12" autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/example_videos/waymo362/src.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">Original</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
                   </div>
                 </div>
 
@@ -462,15 +520,20 @@
                   <span class="handle-left-arrow"></span>
                   <span class="handle-right-arrow"></span>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div>  
+
     </div>
+
   </div>
 </section>
 
+
+<!-- ========================== Comparisons with SOTA Video Generative Model ========================== -->
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Comparisons of the SOTA Video Generative Model</h2>
@@ -482,18 +545,23 @@
       </p>
     </div>
 
+    <!-- ========== Row 1: treehill comparison ========== -->
     <div class="columns is-centered">
+
+      <!-- Original -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div id="v2v" class="bal-container-small4">
+              <div id="v2v1" class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video13" autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/videos/v2v/treehill/src.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">Original</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
                   </div>
                 </div>
               </div>
@@ -502,17 +570,20 @@
         </div>
       </div>
 
+      <!-- Runway-V2V -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div id="v2v" class="bal-container-small4">
+              <div id="v2v2" class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video14" autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/videos/v2v/treehill/runway.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">Runway-V2V</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      Runway-V2V
+                    </div>
                   </div>
                 </div>
               </div>
@@ -521,17 +592,20 @@
         </div>
       </div>
 
+      <!-- RainyGS -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div id="v2v" class="bal-container-small4">
+              <div id="v2v3" class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video15" autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/videos/v2v/treehill/renders.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">RainyGS</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      RainyGS
+                    </div>
                   </div>
                 </div>
               </div>
@@ -539,20 +613,26 @@
           </div>
         </div>
       </div>
+
     </div>
 
+    <!-- ========== Row 2: truck comparison ========== -->
     <div class="columns is-centered">
+
+      <!-- Original -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div id="v2v" class="bal-container-small4">
+              <div id="v2v4" class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video16" autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/videos/v2v/truck/src.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">Original</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
                   </div>
                 </div>
               </div>
@@ -561,17 +641,20 @@
         </div>
       </div>
 
+      <!-- Runway-V2V -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div id="v2v" class="bal-container-small4">
+              <div id="v2v5" class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video17" autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/videos/v2v/truck/runway.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">Runway-V2V</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      Runway-V2V
+                    </div>
                   </div>
                 </div>
               </div>
@@ -580,17 +663,20 @@
         </div>
       </div>
 
+      <!-- RainyGS -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div id="v2v" class="bal-container-small4">
+              <div id="v2v6" class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video id="video18" autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline preload="auto" height="100%">
                       <source src="./static/videos/v2v/truck/renders.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">RainyGS</div>
+                    <div class="bal-beforePosition beforeLabel">
+                      RainyGS
+                    </div>
                   </div>
                 </div>
               </div>
@@ -598,38 +684,55 @@
           </div>
         </div>
       </div>
+
     </div>
 
   </div>
 </section>
 
-<script>
-// Function to synchronize videos
-function syncVideos(videos) {
-  videos.forEach(videoId => {
-    const video = document.getElementById(videoId);
-    video.addEventListener('timeupdate', function () {
-      const currentTime = document.getElementById(videos[0]).currentTime;
-      videos.forEach(otherVideoId => {
-        const otherVideo = document.getElementById(otherVideoId);
-        if (Math.abs(otherVideo.currentTime - currentTime) > 0.1) {
-          otherVideo.currentTime = currentTime;
-        }
-      });
-    });
-  });
-}
 
-// Call the syncVideos function for each group of videos to sync
-syncVideos(['video1', 'video2']);
-syncVideos(['video3', 'video4']);
-syncVideos(['video5', 'video6']);
-syncVideos(['video7', 'video8']);
-syncVideos(['video9', 'video10']);
-syncVideos(['video11', 'video12']);
-syncVideos(['video13', 'video14', 'video15']);
-syncVideos(['video16', 'video17', 'video18']);
+<!-- ========================== 同步播放脚本 ========================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 获取所有可能的对比容器
+  const containers = document.querySelectorAll(
+    '.bal-container-small, .bal-container-small2, .bal-container-small3, .bal-container-small4'
+  );
+
+  containers.forEach(container => {
+    // 找到容器里的所有 video
+    const videos = container.querySelectorAll('video');
+
+    // 1) 如果容器里有2段视频 => 同步播放逻辑 (Before/After)
+    if (videos.length === 2) {
+      let loadedCount = 0;
+      videos.forEach(video => {
+        video.addEventListener('canplaythrough', function onCanPlay() {
+          loadedCount++;
+          // 当两段视频都可播放，就同步 play
+          if (loadedCount === 2) {
+            videos.forEach(v => {
+              v.currentTime = 0;
+              v.play();
+            });
+          }
+        }, { once: true });
+      });
+    } 
+    // 2) 如果容器里只有1段视频 => 直接自动播放
+    else if (videos.length === 1) {
+      const singleVideo = videos[0];
+      singleVideo.addEventListener('canplaythrough', function() {
+        singleVideo.currentTime = 0;
+        singleVideo.play();
+      }, { once: true });
+    }
+    // 3) 否则(0或>2)就根据需求再定处理方式，这里暂不做额外处理
+  });
+});
 </script>
+
+
 
 
 
