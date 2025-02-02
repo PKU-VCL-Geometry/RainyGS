@@ -91,7 +91,7 @@
                 </a>
               </span> -->
               <span class="link-block">
-                <a href="https://github.com/PKU-VCL-Geometry/rainygs" target="_blank"
+                <a href="https://pku-vcl-geometry.github.io/rainygs" target="_blank"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -239,17 +239,6 @@
       Next, we generate a height map and apply shallow-water simulation to produce dynamic water effects, including waves and splashes. 
       Auxiliary maps are then used to simulate rain streaks, reflections, and refraction through efficient screen-based ray tracing. 
       Finally, we integrate all these components to produce realistic dynamic rainy effects.
-    </div>
-    <br>
-    <br>
-    <video autoplay muted loop playsinline height="100%">
-      <source src="./static/videos/method.mp4" type="video/mp4">
-    </video>
-    <div class="content has-text-justified">
-      <b>Techniques.</b> For rainy dynamics, we use shallow-water simulation, which is well-suited for rain scenarios and offers more accuracy than position-based dynamics. 
-      Utilizing height fields to model surface water dynamics not only circumvents GS’s lack of internal geometric detail but also ensures efficiency. 
-      For rendering, we combine screen-space ray tracing with 3DGS to accurately reflect visible surfaces, crucial for visual experience and ideal for rasterization pipelines.
-
     </div>
   </div>
   
