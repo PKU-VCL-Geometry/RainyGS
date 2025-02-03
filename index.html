@@ -44,172 +44,337 @@
 
 
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      function setupVideos() {
-        document.querySelectorAll('.bal-container-small').forEach(container => {
-          const videos = container.querySelectorAll('video');
-          let loadedCount = 0;
-          const overlay = document.createElement('div');
-          
-          // 创建半透明点击提示层
-          overlay.style.cssText = `
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.3);
-            z-index: 50;
-            cursor: pointer;
-            transition: opacity 0.3s;
-          `;
-          container.prepend(overlay);
-    
-          // 初始化视频设置
-          videos.forEach(video => {
-            video.removeAttribute('autoplay');
-            video.preload = 'metadata';
-            video.playsInline = true;
-            video.style.opacity = '0'; // 初始隐藏视频
-          });
-    
-          // 同步播放逻辑
-          const tryPlay = () => {
-            loadedCount++;
-            if (loadedCount === videos.length) {
-              overlay.style.display = 'block';
-              videos.forEach(video => video.style.opacity = '1');
-              
-              // 点击容器开始播放
-              const playHandler = () => {
-                videos.forEach(video => {
-                  video.play().then(() => {
-                    overlay.style.opacity = '0';
-                    setTimeout(() => overlay.style.display = 'none', 300);
-                  }).catch(console.error);
-                });
-              };
-    
-              container.addEventListener('click', playHandler);
-              container.addEventListener('touchstart', playHandler);
-    
-              // 桌面自动播放
-              if (!/Mobi|Android/i.test(navigator.userAgent)) {
-                playHandler();
-              }
-            }
-          };
-    
-          // 加载监听
-          videos.forEach(video => {
-            video.load();
-            video.addEventListener('loadedmetadata', tryPlay);
-          });
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    function setupVideos() {
+      document.querySelectorAll('.bal-container-small').forEach(container => {
+        const videos = container.querySelectorAll('video');
+        let loadedCount = 0;
+        const overlay = document.createElement('div');
+        
+        // 创建半透明点击提示层
+        overlay.style.cssText = `
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.3);
+          z-index: 50;
+          cursor: pointer;
+          transition: opacity 0.3s;
+        `;
+        container.prepend(overlay);
+  
+        // 初始化视频设置
+        videos.forEach(video => {
+          video.removeAttribute('autoplay');
+          video.preload = 'metadata';
+          video.playsInline = true;
+          video.style.opacity = '0'; // 初始隐藏视频
         });
-      }
-    
-      window.addEventListener('load', setupVideos);
-    });
-    </script>
-    
-    <style>
-    .bal-container-small {
-      position: relative;
-      overflow: hidden;
+  
+        // 同步播放逻辑
+        const tryPlay = () => {
+          loadedCount++;
+          if (loadedCount === videos.length) {
+            overlay.style.display = 'block';
+            videos.forEach(video => video.style.opacity = '1');
+            
+            // 点击容器开始播放
+            const playHandler = () => {
+              videos.forEach(video => {
+                video.play().then(() => {
+                  overlay.style.opacity = '0';
+                  setTimeout(() => overlay.style.display = 'none', 300);
+                }).catch(console.error);
+              });
+            };
+  
+            container.addEventListener('click', playHandler);
+            container.addEventListener('touchstart', playHandler);
+  
+            // 桌面自动播放
+            if (!/Mobi|Android/i.test(navigator.userAgent)) {
+              playHandler();
+            }
+          }
+        };
+  
+        // 加载监听
+        videos.forEach(video => {
+          video.load();
+          video.addEventListener('loadedmetadata', tryPlay);
+        });
+      });
     }
-    .bal-container-small video {
-      transition: opacity 0.3s;
-    }
-    </style>
+  
+    window.addEventListener('load', setupVideos);
+  });
+</script>
+    
+<style>
+  .bal-container-small {
+    position: relative;
+    overflow: hidden;
+  }
+  .bal-container-small video {
+    transition: opacity 0.3s;
+  }
+</style>
 
     
     
-    <section class="section">
-        <div class="container is-max-desktop">
-          <h2 class="title is-3">Visual Results:  MipNeRF360</h2>
-          <div class="content has-text-justified">
-          </div>
-          <div class="columns is-centered">
-      
-            <div class="column">
-              <div class="content">
-                <div class="columns is-centered">
-                  <div class="column is-full-width">
-                    <div id="treehill" class="bal-container-small">
-            
-                      <div class="bal-after">
-                        <video muted loop playsinline height="100%"> <!-- 移除了 autoplay -->
-                          <source src="./static/example_videos/treehill/renders.mp4" type="video/mp4">
-                        </video>
-                        <div class="bal-afterPosition afterLabel">
-                          RainyGS
-                        </div>
-                      </div>
-                    
-                      <div class="bal-before">
-                        <div class="bal-before-inset">
-                          <video muted loop playsinline height="100%"> <!-- 移除了 autoplay -->
-                            <source src="./static/example_videos/treehill/src.mp4" type="video/mp4">
-                          </video>
-                          <div class="bal-beforePosition beforeLabel">
-                            Original
-                          </div>
-                        </div>
-                      </div>
-                    
-                      <div class="bal-handle">
-                        <span class=" handle-left-arrow"></span>
-                        <span class="handle-right-arrow"></span>
-                      </div>
-                    
+<section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Visual Results:  MipNeRF360</h2>
+      <div class="content has-text-justified">
+      </div>
+      <div class="columns is-centered">
+  
+        <div class="column">
+          <div class="content">
+            <div class="columns is-centered">
+              <div class="column is-full-width">
+                <div id="treehill" class="bal-container-small">
+        
+                  <div class="bal-after">
+                    <video muted loop playsinline height="100%">
+                      <source src="./static/example_videos/treehill/renders.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-afterPosition afterLabel">
+                      RainyGS
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-    
-            <div class="column">
-              <div class="content">
-                <div class="columns is-centered">
-                  <div class="column is-full-width">
-                    <div id="bicycle" class="bal-container-small">
-            
-                      <div class="bal-after">
-                        <video muted loop playsinline height="100%"> <!-- 移除了 autoplay -->
-                          <source src="./static/example_videos/bicycle/renders.mp4" type="video/mp4">
-                        </video>
-                        <div class="bal-afterPosition afterLabel">
-                          RainyGS
-                        </div>
+                
+                  <div class="bal-before">
+                    <div class="bal-before-inset">
+                      <video muted loop playsinline height="100%">
+                        <source src="./static/example_videos/treehill/src.mp4" type="video/mp4">
+                      </video>
+                      <div class="bal-beforePosition beforeLabel">
+                        Original
                       </div>
-                    
-                      <div class="bal-before">
-                        <div class="bal-before-inset">
-                          <video muted loop playsinline height="100%"> <!-- 移除了 autoplay -->
-                            <source src="./static/example_videos/bicycle/src.mp4" type="video/mp4">
-                          </video>
-                          <div class="bal-beforePosition beforeLabel">
-                            Original
-                          </div>
-                        </div>
-                      </div>
-                    
-                      <div class="bal-handle">
-                        <span class=" handle-left-arrow"></span>
-                        <span class="handle-right-arrow"></span>
-                      </div>
-                    
                     </div>
                   </div>
+                
+                  <div class="bal-handle">
+                    <span class=" handle-left-arrow"></span>
+                    <span class="handle-right-arrow"></span>
+                  </div>
+                
                 </div>
               </div>
             </div>
           </div>
         </div>
-    </section>
+
+        <div class="column">
+          <div class="content">
+            <div class="columns is-centered">
+              <div class="column is-full-width">
+                <div id="bicycle" class="bal-container-small">
+        
+                  <div class="bal-after">
+                    <video muted loop playsinline height="100%">
+                      <source src="./static/example_videos/bicycle/renders.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-afterPosition afterLabel">
+                      RainyGS
+                    </div>
+                  </div>
+                
+                  <div class="bal-before">
+                    <div class="bal-before-inset">
+                      <video muted loop playsinline height="100%">
+                        <source src="./static/example_videos/bicycle/src.mp4" type="video/mp4">
+                      </video>
+                      <div class="bal-beforePosition beforeLabel">
+                        Original
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="bal-handle">
+                    <span class=" handle-left-arrow"></span>
+                    <span class="handle-right-arrow"></span>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
 
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Comparisons of the SOTA Video Generative Model</h2>
+    <div class="content has-text-justified">
+      <p>
+      </p>
+    </div>
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+
+              <div id="v2v" class="bal-container-small4">
+              
+                <div class="bal-before">
+                  <div class="bal-before-inset">
+                    <video autoplay muted loop playsinline height="100%">
+                      <source src="./static/videos/v2v/treehill/src.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+
+              <div id="v2v" class="bal-container-small4">
+              
+                <div class="bal-before">
+                  <div class="bal-before-inset">
+                    <video autoplay muted loop playsinline height="100%">
+                      <source src="./static/videos/v2v/treehill/runway.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-beforePosition beforeLabel">
+                      Runway-V2V
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+
+              <div id="v2v" class="bal-container-small4">
+              
+                <div class="bal-before">
+                  <div class="bal-before-inset">
+                    <video autoplay muted loop playsinline height="100%">
+                      <source src="./static/videos/v2v/treehill/renders.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-beforePosition beforeLabel">
+                      RainyGS
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+
+              <div id="v2v" class="bal-container-small4">
+              
+                <div class="bal-before">
+                  <div class="bal-before-inset">
+                    <video autoplay muted loop playsinline height="100%">
+                      <source src="./static/videos/v2v/truck/src.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+
+              <div id="v2v" class="bal-container-small4">
+              
+                <div class="bal-before">
+                  <div class="bal-before-inset">
+                    <video autoplay muted loop playsinline height="100%">
+                      <source src="./static/videos/v2v/truck/runway.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-beforePosition beforeLabel">
+                      Runway-V2V
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+
+              <div id="v2v" class="bal-container-small4">
+              
+                <div class="bal-before">
+                  <div class="bal-before-inset">
+                    <video autoplay muted loop playsinline height="100%">
+                      <source src="./static/videos/v2v/truck/renders.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-beforePosition beforeLabel">
+                      RainyGS
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
 
