@@ -106,6 +106,23 @@
       }
     });
     </script>
+
+<style>
+  .play-prompt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: none;
+    z-index: 100;
+  }
+  </style>
+  
     
     <section class="section">
         <div class="container is-max-desktop">
@@ -119,6 +136,7 @@
                 <div class="columns is-centered">
                   <div class="column is-full-width">
                     <div id="treehill" class="bal-container-small">
+                      <div class="play-prompt">点击画面开始播放</div>
             
                       <div class="bal-after">
                         <video muted loop playsinline height="100%"> <!-- 移除了 autoplay -->
