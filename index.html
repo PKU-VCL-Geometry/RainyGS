@@ -215,81 +215,63 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Comparisons of the SOTA Video Generative Model</h2>
-    <div class="content has-text-justified">
-      <p>
-      </p>
-    </div>
-
+    
+    <!-- 第一行视频 -->
     <div class="columns is-centered">
-
+      <!-- Original -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-
-              <div id="v2v" class="bal-container-small4">
-              
+              <div class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline height="100%" class="sync-video">
                       <source src="./static/videos/v2v/treehill/src.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">
-                      Original
-                    </div>
+                    <div class="bal-beforePosition beforeLabel">Original</div>
                   </div>
                 </div>
-              
               </div>
             </div>
           </div>
         </div>
       </div>
 
-
+      <!-- Runway-V2V -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-
-              <div id="v2v" class="bal-container-small4">
-              
+              <div class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline height="100%" class="sync-video">
                       <source src="./static/videos/v2v/treehill/runway.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">
-                      Runway-V2V
-                    </div>
+                    <div class="bal-beforePosition beforeLabel">Runway-V2V</div>
                   </div>
                 </div>
-              
               </div>
             </div>
           </div>
         </div>
       </div>
-      
 
+      <!-- RainyGS -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-
-              <div id="v2v" class="bal-container-small4">
-              
+              <div class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline height="100%" class="sync-video">
                       <source src="./static/videos/v2v/treehill/renders.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">
-                      RainyGS
-                    </div>
+                    <div class="bal-beforePosition beforeLabel">RainyGS</div>
                   </div>
                 </div>
-              
               </div>
             </div>
           </div>
@@ -297,86 +279,153 @@
       </div>
     </div>
 
-
+    <!-- 第二行视频 -->
     <div class="columns is-centered">
-
+      <!-- Original -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-
-              <div id="v2v" class="bal-container-small4">
-              
+              <div class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline height="100%" class="sync-video">
                       <source src="./static/videos/v2v/truck/src.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">
-                      Original
-                    </div>
+                    <div class="bal-beforePosition beforeLabel">Original</div>
                   </div>
                 </div>
-              
               </div>
             </div>
           </div>
         </div>
       </div>
 
-
+      <!-- Runway-V2V -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-
-              <div id="v2v" class="bal-container-small4">
-              
+              <div class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline height="100%" class="sync-video">
                       <source src="./static/videos/v2v/truck/runway.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">
-                      Runway-V2V
-                    </div>
+                    <div class="bal-beforePosition beforeLabel">Runway-V2V</div>
                   </div>
                 </div>
-              
               </div>
             </div>
           </div>
         </div>
       </div>
-      
 
+      <!-- RainyGS -->
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-
-              <div id="v2v" class="bal-container-small4">
-              
+              <div class="bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video autoplay muted loop playsinline height="100%">
+                    <video muted loop playsinline height="100%" class="sync-video">
                       <source src="./static/videos/v2v/truck/renders.mp4" type="video/mp4">
                     </video>
-                    <div class="bal-beforePosition beforeLabel">
-                      RainyGS
-                    </div>
+                    <div class="bal-beforePosition beforeLabel">RainyGS</div>
                   </div>
                 </div>
-              
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
+
+<script>
+// 同步播放控制逻辑
+document.addEventListener('DOMContentLoaded', () => {
+  // 获取所有视频行
+  const videoRows = document.querySelectorAll('.columns.is-centered');
+  
+  videoRows.forEach(row => {
+    // 获取当前行所有视频
+    const videos = row.querySelectorAll('.sync-video');
+    let loadedCount = 0;
+    let playStarted = false;
+
+    // 准备播放函数
+    const tryPlay = () => {
+      if (loadedCount === videos.length && !playStarted) {
+        playStarted = true;
+        // 同步播放并重置时间
+        videos.forEach(video => {
+          video.currentTime = 0;
+          video.play().catch(e => console.log('Auto-play prevented:', e));
+        });
+      }
+    };
+
+    // 为每个视频设置加载监听
+    videos.forEach(video => {
+      // 设置预加载
+      video.preload = 'auto';
+      
+      // 清除自动播放属性
+      video.removeAttribute('autoplay');
+
+      // 设置加载完成监听
+      const onCanPlay = () => {
+        loadedCount++;
+        tryPlay();
+      };
+
+      // 添加事件监听
+      video.addEventListener('loadedmetadata', onCanPlay);
+      video.addEventListener('canplay', onCanPlay);
+      video.addEventListener('canplaythrough', onCanPlay);
+      
+      // 触发加载
+      video.load();
+    });
+
+    // 设置周期性同步（每10秒强制同步一次）
+    setInterval(() => {
+      if (playStarted) {
+        videos.forEach(video => {
+          if (video.currentTime > 9.5) {
+            video.currentTime = 0;
+          }
+        });
+      }
+    }, 10000);
+  });
+});
+
+// 添加简单的点击播放控制（可选）
+document.body.addEventListener('click', () => {
+  document.querySelectorAll('video').forEach(video => {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  });
+});
+</script>
+
+<style>
+/* 可选：添加点击区域提示 */
+.bal-container-small4 {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+.bal-container-small4:hover {
+  opacity: 0.9;
+}
+</style>
 
 
 
