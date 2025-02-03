@@ -46,81 +46,82 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // 自动播放处理
       function setupVideos() {
         document.querySelectorAll('.bal-container-small').forEach(container => {
           const videos = container.querySelectorAll('video');
           let loadedCount = 0;
-          let hasPlayed = false;
+          const overlay = document.createElement('div');
+          
+          // 创建半透明点击提示层
+          overlay.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 50;
+            cursor: pointer;
+            transition: opacity 0.3s;
+          `;
+          container.prepend(overlay);
     
-          // iOS 静音自动播放配置
+          // 初始化视频设置
           videos.forEach(video => {
-            video.muted = true; // 强制静音（iOS自动播放必要条件）
+            video.removeAttribute('autoplay');
+            video.preload = 'metadata';
             video.playsInline = true;
-            video.preload = 'auto';
-            video.setAttribute('playsinline', '');
+            video.style.opacity = '0'; // 初始隐藏视频
           });
     
-          // 同步播放函数
-          const playVideos = () => {
-            if (hasPlayed) return;
-            hasPlayed = true;
-            
-            videos.forEach(video => {
-              video.play()
-                .then(() => {
-                  // 时间同步逻辑
-                  const syncTime = () => {
-                    videos.forEach(other => {
-                      if (other !== video && Math.abs(other.currentTime - video.currentTime) > 0.1) {
-                        other.currentTime = video.currentTime;
-                      }
-                    });
-                  };
-                  video.addEventListener('timeupdate', syncTime);
-                })
-                .catch(e => console.log('Play failed:', e));
-            });
-          };
-    
-          // 加载完成检查
-          const checkLoaded = () => {
+          // 同步播放逻辑
+          const tryPlay = () => {
             loadedCount++;
             if (loadedCount === videos.length) {
-              // 尝试自动播放
-              playVideos();
+              overlay.style.display = 'block';
+              videos.forEach(video => video.style.opacity = '1');
               
-              // 添加点击/触摸后备方案
-              container.style.cursor = 'pointer';
-              const retryPlay = () => {
-                playVideos();
-                container.removeEventListener('click', retryPlay);
-                container.removeEventListener('touchstart', retryPlay);
+              // 点击容器开始播放
+              const playHandler = () => {
+                videos.forEach(video => {
+                  video.play().then(() => {
+                    overlay.style.opacity = '0';
+                    setTimeout(() => overlay.style.display = 'none', 300);
+                  }).catch(console.error);
+                });
               };
-              container.addEventListener('click', retryPlay);
-              container.addEventListener('touchstart', retryPlay);
+    
+              container.addEventListener('click', playHandler);
+              container.addEventListener('touchstart', playHandler);
+    
+              // 桌面自动播放
+              if (!/Mobi|Android/i.test(navigator.userAgent)) {
+                playHandler();
+              }
             }
           };
     
           // 加载监听
           videos.forEach(video => {
-            if (video.readyState > 3) checkLoaded();
-            video.addEventListener('loadedmetadata', checkLoaded);
-            video.addEventListener('error', (e) => {
-              console.error('Video error:', e.target.error);
-            });
+            video.load();
+            video.addEventListener('loadedmetadata', tryPlay);
           });
         });
       }
     
-      // 延迟启动以适应iOS策略
-      if (document.readyState === 'complete') {
-        setTimeout(setupVideos, 500);
-      } else {
-        window.addEventListener('load', () => setTimeout(setupVideos, 500));
-      }
+      window.addEventListener('load', setupVideos);
     });
     </script>
+    
+    <style>
+    .bal-container-small {
+      position: relative;
+      overflow: hidden;
+    }
+    .bal-container-small video {
+      transition: opacity 0.3s;
+    }
+    </style>
 
     
     
