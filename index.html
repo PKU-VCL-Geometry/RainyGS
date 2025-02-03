@@ -46,51 +46,66 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // iOS 自动播放处理
+      // 自动播放处理
       function setupVideos() {
         document.querySelectorAll('.bal-container-small').forEach(container => {
           const videos = container.querySelectorAll('video');
           let loadedCount = 0;
+          let hasPlayed = false;
     
-          // 移除自动播放属性
+          // iOS 静音自动播放配置
           videos.forEach(video => {
-            video.removeAttribute('autoplay');
-            video.preload = 'metadata'; // iOS 友好预加载
-            video.playsInline = true; // 确保内联播放
+            video.muted = true; // 强制静音（iOS自动播放必要条件）
+            video.playsInline = true;
+            video.preload = 'auto';
+            video.setAttribute('playsinline', '');
           });
     
           // 同步播放函数
-          const tryPlay = () => {
+          const playVideos = () => {
+            if (hasPlayed) return;
+            hasPlayed = true;
+            
+            videos.forEach(video => {
+              video.play()
+                .then(() => {
+                  // 时间同步逻辑
+                  const syncTime = () => {
+                    videos.forEach(other => {
+                      if (other !== video && Math.abs(other.currentTime - video.currentTime) > 0.1) {
+                        other.currentTime = video.currentTime;
+                      }
+                    });
+                  };
+                  video.addEventListener('timeupdate', syncTime);
+                })
+                .catch(e => console.log('Play failed:', e));
+            });
+          };
+    
+          // 加载完成检查
+          const checkLoaded = () => {
             loadedCount++;
             if (loadedCount === videos.length) {
-              // iOS 需要用户手势触发
-              const playHandler = () => {
-                videos.forEach(video => {
-                  video.play().catch(e => console.log('Play attempt failed:', e));
-                });
-                document.removeEventListener('touchstart', playHandler);
-              };
+              // 尝试自动播放
+              playVideos();
               
-              // 添加点击容器触发播放
+              // 添加点击/触摸后备方案
               container.style.cursor = 'pointer';
-              container.addEventListener('click', playHandler);
-              container.addEventListener('touchstart', playHandler);
-              
-              // 自动尝试播放（桌面端）
-              if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
-                container.querySelector('.play-prompt').style.display = 'block';
-              } else {
-                playHandler();
-              }
+              const retryPlay = () => {
+                playVideos();
+                container.removeEventListener('click', retryPlay);
+                container.removeEventListener('touchstart', retryPlay);
+              };
+              container.addEventListener('click', retryPlay);
+              container.addEventListener('touchstart', retryPlay);
             }
           };
     
           // 加载监听
           videos.forEach(video => {
-            // 强制 Safari 加载元数据
-            video.load();
-    
-            video.addEventListener('loadedmetadata', tryPlay);
+            if (video.readyState > 3) checkLoaded();
+            video.addEventListener('loadedmetadata', checkLoaded);
             video.addEventListener('error', (e) => {
               console.error('Video error:', e.target.error);
             });
@@ -98,31 +113,16 @@
         });
       }
     
-      // 兼容 iOS 页面加载策略
+      // 延迟启动以适应iOS策略
       if (document.readyState === 'complete') {
-        setupVideos();
+        setTimeout(setupVideos, 500);
       } else {
-        window.addEventListener('load', setupVideos);
+        window.addEventListener('load', () => setTimeout(setupVideos, 500));
       }
     });
     </script>
 
-<style>
-  .play-prompt {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    display: none;
-    z-index: 100;
-  }
-  </style>
-  
+    
     
     <section class="section">
         <div class="container is-max-desktop">
@@ -136,7 +136,6 @@
                 <div class="columns is-centered">
                   <div class="column is-full-width">
                     <div id="treehill" class="bal-container-small">
-                      <div class="play-prompt">点击画面开始播放</div>
             
                       <div class="bal-after">
                         <video muted loop playsinline height="100%"> <!-- 移除了 autoplay -->
