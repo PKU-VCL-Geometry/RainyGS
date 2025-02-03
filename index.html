@@ -211,6 +211,88 @@
 
 
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const setupVideoSync = (row) => {
+      const videos = Array.from(row.querySelectorAll('video'));
+      if (videos.length !== 3) return;
+  
+      // 强制设置静音属性
+      videos.forEach(v => v.muted = true);
+  
+      // 同步函数
+      const syncVideos = (master) => {
+        videos.forEach(v => {
+          if (v !== master && !v.paused) {
+            v.currentTime = master.currentTime;
+          }
+        });
+      };
+  
+      // 自动播放处理器
+      const playHandler = () => {
+        videos.forEach(v => {
+          v.play()
+            .then(() => v.currentTime = videos[0].currentTime)
+            .catch(e => console.error('播放失败:', e));
+        });
+      };
+  
+      // 主视频事件监听
+      const masterVideo = videos[0];
+      masterVideo.addEventListener('timeupdate', () => syncVideos(masterVideo));
+      masterVideo.addEventListener('seeked', () => syncVideos(masterVideo));
+  
+      // 统一加载检测
+      let loadedCount = 0;
+      const checkReady = () => {
+        if (++loadedCount === 3) {
+          // 设置初始同步点
+          const initTime = masterVideo.currentTime;
+          videos.forEach(v => v.currentTime = initTime);
+          
+          // 启动播放
+          playHandler();
+        }
+      };
+  
+      videos.forEach(v => {
+        v.addEventListener('loadedmetadata', checkReady);
+        v.setAttribute('playsinline', '');
+        v.setAttribute('autoplay', '');
+      });
+    };
+  
+    // 为每行视频设置同步
+    document.querySelectorAll('.columns.is-centered').forEach(setupVideoSync);
+  });
+  </script>
+  
+  <style>
+  /* 自适应视频容器 */
+  .bal-container-small4 {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .bal-container-small4 video {
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+  
+  /* 标签样式优化 */
+  .bal-beforePosition {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  </style>
 
 
 <section class="section">
