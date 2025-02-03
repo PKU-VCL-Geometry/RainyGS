@@ -42,10 +42,9 @@
 </head>
 <body>
 
-
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Visual Results: MipNeRF360</h2>
+      <h2 class="title is-3">Visual Results:  MipNeRF360</h2>
       <div class="content has-text-justified">
       </div>
       <div class="columns is-centered">
@@ -55,8 +54,9 @@
             <div class="columns is-centered">
               <div class="column is-full-width">
                 <div id="treehill" class="bal-container-small">
+        
                   <div class="bal-after">
-                    <video id="treehill-video" muted loop playsinline height="100%">
+                    <video autoplay muted loop playsinline height="100%">
                       <source src="./static/example_videos/treehill/renders.mp4" type="video/mp4">
                     </video>
                     <div class="bal-afterPosition afterLabel">
@@ -66,7 +66,7 @@
                 
                   <div class="bal-before">
                     <div class="bal-before-inset">
-                      <video id="treehill-src-video" muted loop playsinline height="100%">
+                      <video autoplay muted loop playsinline height="100%">
                         <source src="./static/example_videos/treehill/src.mp4" type="video/mp4">
                       </video>
                       <div class="bal-beforePosition beforeLabel">
@@ -76,22 +76,26 @@
                   </div>
                 
                   <div class="bal-handle">
-                    <span class="handle-left-arrow"></span>
+                    <span class=" handle-left-arrow"></span>
                     <span class="handle-right-arrow"></span>
                   </div>
+                
                 </div>
+  
               </div>
             </div>
           </div>
         </div>
+        
   
         <div class="column">
           <div class="content">
             <div class="columns is-centered">
               <div class="column is-full-width">
                 <div id="bicycle" class="bal-container-small">
+        
                   <div class="bal-after">
-                    <video id="bicycle-video" muted loop playsinline height="100%">
+                    <video autoplay muted loop playsinline height="100%">
                       <source src="./static/example_videos/bicycle/renders.mp4" type="video/mp4">
                     </video>
                     <div class="bal-afterPosition afterLabel">
@@ -101,7 +105,7 @@
                 
                   <div class="bal-before">
                     <div class="bal-before-inset">
-                      <video id="bicycle-src-video" muted loop playsinline height="100%">
+                      <video autoplay muted loop playsinline height="100%">
                         <source src="./static/example_videos/bicycle/src.mp4" type="video/mp4">
                       </video>
                       <div class="bal-beforePosition beforeLabel">
@@ -111,78 +115,21 @@
                   </div>
                 
                   <div class="bal-handle">
-                    <span class="handle-left-arrow"></span>
+                    <span class=" handle-left-arrow"></span>
                     <span class="handle-right-arrow"></span>
                   </div>
+                
                 </div>
+  
               </div>
             </div>
           </div>
         </div>
-
+  
+      
       </div>
     </div>
   </section>
-  
-  <script>
-  // 视频同步控制类
-  class VideoSyncGroup {
-    constructor(video1, video2) {
-      this.video1 = video1;
-      this.video2 = video2;
-      this.loaded1 = false;
-      this.loaded2 = false;
-      
-      this.init();
-    }
-  
-    init() {
-      // 暂停视频
-      this.video1.pause();
-      this.video2.pause();
-  
-      // 监听加载事件
-      this.video1.addEventListener('loadeddata', () => {
-        this.loaded1 = true;
-        this.checkAndPlay();
-      });
-  
-      this.video2.addEventListener('loadeddata', () => {
-        this.loaded2 = true;
-        this.checkAndPlay();
-      });
-    }
-  
-    checkAndPlay() {
-      if (this.loaded1 && this.loaded2) {
-        // 重置时间确保从头开始播放
-        this.video1.currentTime = 0;
-        this.video2.currentTime = 0;
-        
-        // 开始播放
-        Promise.all([
-          this.video1.play(),
-          this.video2.play()
-        ]).catch(e => console.log("Video play failed:", e));
-      }
-    }
-  }
-  
-  // 创建视频同步组
-  document.addEventListener('DOMContentLoaded', () => {
-    // treehill组
-    new VideoSyncGroup(
-      document.getElementById('treehill-video'),
-      document.getElementById('treehill-src-video')
-    );
-  
-    // bicycle组
-    new VideoSyncGroup(
-      document.getElementById('bicycle-video'),
-      document.getElementById('bicycle-src-video')
-    );
-  });
-  </script>
 
 
 
