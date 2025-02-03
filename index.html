@@ -210,6 +210,53 @@
 </section>
 
 
+
+<!-- 在HTML的适当位置（例如在section结束前）添加以下脚本 -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 找到所有视频行
+    const videoRows = document.querySelectorAll('.columns.is-centered');
+  
+    videoRows.forEach(row => {
+      const videos = row.querySelectorAll('video');
+      if (videos.length < 3) return;
+  
+      // 设置同步函数
+      function syncVideos() {
+        const baseTime = videos[0].currentTime;
+        videos[1].currentTime = baseTime;
+        videos[2].currentTime = baseTime;
+        requestAnimationFrame(syncVideos);
+      }
+  
+      // 当所有视频准备好后开始同步
+      Promise.all(Array.from(videos).map(video => {
+        return new Promise(resolve => {
+          video.addEventListener('loadedmetadata', resolve);
+          video.addEventListener('error', resolve); // 处理错误情况
+        });
+      })).then(() => {
+        videos[0].play();
+        videos[1].play();
+        videos[2].play();
+        requestAnimationFrame(syncVideos);
+      });
+    });
+  });
+</script>
+  
+  <style>
+  /* 添加样式确保视频容器尺寸一致 */
+  .bal-container-small4 {
+    aspect-ratio: 16/9;
+  }
+  .bal-container-small4 video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  </style>
+
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Comparisons of the SOTA Video Generative Model</h2>
