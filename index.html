@@ -46,48 +46,64 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // 处理每个视频对比组
-      document.querySelectorAll('.bal-container-small').forEach(container => {
-        const videos = container.querySelectorAll('video');
-        let videosReady = 0;
+      // iOS 自动播放处理
+      function setupVideos() {
+        document.querySelectorAll('.bal-container-small').forEach(container => {
+          const videos = container.querySelectorAll('video');
+          let loadedCount = 0;
     
-        // 移除自动播放属性
-        videos.forEach(video => video.removeAttribute('autoplay'));
+          // 移除自动播放属性
+          videos.forEach(video => {
+            video.removeAttribute('autoplay');
+            video.preload = 'metadata'; // iOS 友好预加载
+            video.playsInline = true; // 确保内联播放
+          });
     
-        // 创建播放同步函数
-        const tryPlay = () => {
-          videosReady++;
-          if (videosReady === videos.length) {
-            // 同步播放并设置循环
-            videos.forEach(video => {
-              video.play().then(() => {
-                // 设置时间同步（针对循环播放）
-                video.addEventListener('timeupdate', function sync() {
-                  videos.forEach(otherVideo => {
-                    if (otherVideo !== video && Math.abs(otherVideo.currentTime - video.currentTime) > 0.1) {
-                      otherVideo.currentTime = video.currentTime;
-                    }
-                  });
+          // 同步播放函数
+          const tryPlay = () => {
+            loadedCount++;
+            if (loadedCount === videos.length) {
+              // iOS 需要用户手势触发
+              const playHandler = () => {
+                videos.forEach(video => {
+                  video.play().catch(e => console.log('Play attempt failed:', e));
                 });
-              });
-            });
-          }
-        };
+                document.removeEventListener('touchstart', playHandler);
+              };
+              
+              // 添加点击容器触发播放
+              container.style.cursor = 'pointer';
+              container.addEventListener('click', playHandler);
+              container.addEventListener('touchstart', playHandler);
+              
+              // 自动尝试播放（桌面端）
+              if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
+                container.querySelector('.play-prompt').style.display = 'block';
+              } else {
+                playHandler();
+              }
+            }
+          };
     
-        // 监听每个视频的加载状态
-        videos.forEach(video => {
-          // 立即检查已加载状态
-          if (video.readyState > 3) { // HAVE_ENOUGH_DATA
-            tryPlay();
-          }
-          
-          video.addEventListener('canplaythrough', tryPlay);
-          video.addEventListener('loadeddata', tryPlay);
-          
-          // 预加载视频
-          video.preload = 'auto';
+          // 加载监听
+          videos.forEach(video => {
+            // 强制 Safari 加载元数据
+            video.load();
+    
+            video.addEventListener('loadedmetadata', tryPlay);
+            video.addEventListener('error', (e) => {
+              console.error('Video error:', e.target.error);
+            });
+          });
         });
-      });
+      }
+    
+      // 兼容 iOS 页面加载策略
+      if (document.readyState === 'complete') {
+        setupVideos();
+      } else {
+        window.addEventListener('load', setupVideos);
+      }
     });
     </script>
     
