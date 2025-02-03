@@ -226,18 +226,17 @@
     transition: opacity 0.3s;
     vertical-align: middle;
   }
-  
-  /* 保持原有滑动条样式 */
-  .bal-handle {
-    /* 原有滑动条样式 */
-  }
   </style>
    
     
-<section class="section">
+   <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Visual Results:  MipNeRF360</h2>
       <div class="content has-text-justified">
+        <p>
+          <b>Rain synthesis results on MipNeRF360 dataset.</b> Our approach achieves high-quality, realistic rain effects, including rain 
+          streaks in the sky, water accumulation on surfaces, and reflection and refraction, etc., in a computationally efficient manner.
+        </p>
       </div>
       <div class="columns is-centered">
   
@@ -248,7 +247,7 @@
                 <div id="treehill" class="bal-container-small">
         
                   <div class="bal-after">
-                    <video muted loop playsinline height="100%">
+                    <video  muted loop playsinline height="100%">
                       <source src="./static/example_videos/treehill/renders.mp4" type="video/mp4">
                     </video>
                     <div class="bal-afterPosition afterLabel">
@@ -258,7 +257,7 @@
                 
                   <div class="bal-before">
                     <div class="bal-before-inset">
-                      <video muted loop playsinline height="100%">
+                      <video  muted loop playsinline height="100%">
                         <source src="./static/example_videos/treehill/src.mp4" type="video/mp4">
                       </video>
                       <div class="bal-beforePosition beforeLabel">
@@ -273,11 +272,13 @@
                   </div>
                 
                 </div>
+  
               </div>
             </div>
           </div>
         </div>
-
+        
+  
         <div class="column">
           <div class="content">
             <div class="columns is-centered">
@@ -285,7 +286,7 @@
                 <div id="bicycle" class="bal-container-small">
         
                   <div class="bal-after">
-                    <video muted loop playsinline height="100%">
+                    <video  muted loop playsinline height="100%">
                       <source src="./static/example_videos/bicycle/renders.mp4" type="video/mp4">
                     </video>
                     <div class="bal-afterPosition afterLabel">
@@ -295,8 +296,104 @@
                 
                   <div class="bal-before">
                     <div class="bal-before-inset">
-                      <video muted loop playsinline height="100%">
+                      <video  muted loop playsinline height="100%">
                         <source src="./static/example_videos/bicycle/src.mp4" type="video/mp4">
+                      </video>
+                      <div class="bal-beforePosition beforeLabel">
+                        Original
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="bal-handle">
+                    <span class=" handle-left-arrow"></span>
+                    <span class="handle-right-arrow"></span>
+                  </div>
+                
+                </div>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Visual Results: Tanks and Temples</h2>
+      <div class="content has-text-justified">
+        <p>
+          <b>Rain synthesis results on Tanks and Temples dataset.</b> Our method delivers high-quality and realistic rain effects, 
+          such as rain streaks in the sky, water pooling on surfaces, and realistic reflections and refractions, while maintaining computational efficiency.
+        </p>
+      </div>
+      <div class="columns is-centered">
+  
+        <div class="column">
+          <div class="content">
+            <div class="columns is-centered">
+              <div class="column is-full-width">
+  
+                <div id="family" class="bal-container-small2">
+  
+                  <div class="bal-after">
+                    <video  muted loop playsinline height="100%">
+                      <source src="./static/example_videos/family/renders.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-afterPosition afterLabel">
+                      RainyGS
+                    </div>
+                  </div>
+                
+  
+                  <div class="bal-before">
+                    <div class="bal-before-inset">
+                      <video  muted loop playsinline height="100%">
+                        <source src="./static/example_videos/family/src.mp4" type="video/mp4">
+                      </video>
+                      <div class="bal-beforePosition beforeLabel">
+                        Original
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="bal-handle">
+                    <span class=" handle-left-arrow"></span>
+                    <span class="handle-right-arrow"></span>
+                  </div>
+                
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+  
+        <div class="column">
+          <div class="content">
+            <div class="columns is-centered">
+              <div class="column is-full-width">
+  
+                <div id="truck" class="bal-container-small2">
+        
+                  <div class="bal-after">
+                    <video  muted loop playsinline height="100%">
+                      <source src="./static/example_videos/truck/renders.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-afterPosition afterLabel">
+                      RainyGS
+                    </div>
+                  </div>
+                
+                  <div class="bal-before">
+                    <div class="bal-before-inset">
+                      <video  muted loop playsinline height="100%">
+                        <source src="./static/example_videos/truck/src.mp4" type="video/mp4">
                       </video>
                       <div class="bal-beforePosition beforeLabel">
                         Original
@@ -316,40 +413,77 @@
         </div>
       </div>
     </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Visual Results: Tanks and Temples</h2>
-    <div class="content has-text-justified">
-      <p>
-        <b>Rain synthesis results on Tanks and Temples dataset.</b> Our method delivers high-quality and realistic rain effects, 
-        such as rain streaks in the sky, water pooling on surfaces, and realistic reflections and refractions, while maintaining computational efficiency.
-      </p>
-    </div>
-    <div class="columns is-centered">
-
+  </section>
+  
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Visual Results: Waymo Scenes</h2>
+      <div class="content has-text-justified">
+        <p>
+          <b>Rainy Weather Synthesis for Waymo Scenes.</b> Our method facilitates the efficient transformation of continuous autonomous driving scenes into rainy weather conditions, enabling
+          robustness testing of autonomous driving perception algorithms. Additionally, it offers a novel framework for synthesizing adverse weather data in autonomous driving.
+        </p>
+      </div>
+  
+      <div class="columns is-centered">
+  
+        <div class="column">
+          <div class="content">
+            <div class="columns is-centered">
+              <div class="column is-full-width">
+                <div id="waymo181" class="bal-container-small3">
+        
+                  <div class="bal-after">
+                    <video  muted loop playsinline height="100%">
+                      <source src="./static/example_videos/waymo181/renders.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-afterPosition afterLabel">
+                      RainyGS
+                    </div>
+                  </div>
+                
+                  <div class="bal-before">
+                    <div class="bal-before-inset">
+                      <video  muted loop playsinline height="100%">
+                        <source src="./static/example_videos/waymo181/src.mp4" type="video/mp4">
+                      </video>
+                      <div class="bal-beforePosition beforeLabel">
+                        Original
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="bal-handle">
+                    <span class=" handle-left-arrow"></span>
+                    <span class="handle-right-arrow"></span>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-
-              <div id="family" class="bal-container-small2">
-
+              <div id="waymo362" class="bal-container-small3">
+      
                 <div class="bal-after">
-                  <video muted loop playsinline height="100%">
-                    <source src="./static/example_videos/family/renders.mp4" type="video/mp4">
+                  <video  muted loop playsinline height="100%">
+                    <source src="./static/example_videos/waymo362/renders.mp4" type="video/mp4">
                   </video>
                   <div class="bal-afterPosition afterLabel">
                     RainyGS
                   </div>
                 </div>
               
-
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video muted loop playsinline height="100%">
-                      <source src="./static/example_videos/family/src.mp4" type="video/mp4">
+                    <video  muted loop playsinline height="100%">
+                      <source src="./static/example_videos/waymo362/src.mp4" type="video/mp4">
                     </video>
                     <div class="bal-beforePosition beforeLabel">
                       Original
@@ -362,54 +496,17 @@
                   <span class="handle-right-arrow"></span>
                 </div>
               
-
               </div>
             </div>
           </div>
         </div>
+  
+      </div>  
+  
       </div>
-      
-
-      <div class="column">
-        <div class="content">
-          <div class="columns is-centered">
-            <div class="column is-full-width">
-
-              <div id="truck" class="bal-container-small2">
-      
-                <div class="bal-after">
-                  <video muted loop playsinline height="100%">
-                    <source src="./static/example_videos/truck/renders.mp4" type="video/mp4">
-                  </video>
-                  <div class="bal-afterPosition afterLabel">
-                    RainyGS
-                  </div>
-                </div>
-              
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                    <video muted loop playsinline height="100%">
-                      <source src="./static/example_videos/truck/src.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-beforePosition beforeLabel">
-                      Original
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="bal-handle">
-                  <span class=" handle-left-arrow"></span>
-                  <span class="handle-right-arrow"></span>
-                </div>
-              
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  
     </div>
-  </div>
-</section>
+  </section>
 
 
 <section class="section">
@@ -422,7 +519,7 @@
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div class="bal-container-small4">
+              <div class="videogen-bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
                     <video muted loop playsinline height="100%" class="sync-video">
@@ -441,7 +538,7 @@
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div class="bal-container-small4">
+              <div class="videogen-bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
                     <video muted loop playsinline height="100%" class="sync-video">
@@ -460,7 +557,7 @@
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div class="bal-container-small4">
+              <div class="videogen-bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
                     <video muted loop playsinline height="100%" class="sync-video">
@@ -482,7 +579,7 @@
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div class="bal-container-small4">
+              <div class="videogen-bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
                     <video muted loop playsinline height="100%" class="sync-video">
@@ -501,7 +598,7 @@
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div class="bal-container-small4">
+              <div class="videogen-bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
                     <video muted loop playsinline height="100%" class="sync-video">
@@ -520,7 +617,7 @@
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div class="bal-container-small4">
+              <div class="videogen-bal-container-small4">
                 <div class="bal-before">
                   <div class="bal-before-inset">
                     <video muted loop playsinline height="100%" class="sync-video">
