@@ -44,7 +44,7 @@
 
 
 
-<script>
+<!-- <script>
   document.addEventListener('DOMContentLoaded', function() {
     function setupVideos() {
       document.querySelectorAll('.bal-container-small').forEach(container => {
@@ -121,9 +121,118 @@
   .bal-container-small video {
     transition: opacity 0.3s;
   }
-</style>
+</style> -->
 
-    
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 通用视频控制器
+    class VideoSyncController {
+      constructor(container) {
+        this.container = container;
+        this.videos = Array.from(container.querySelectorAll('video'));
+        this.init();
+      }
+  
+      init() {
+        // 创建遮罩层
+        this.overlay = document.createElement('div');
+        this.overlay.className = 'video-overlay';
+        this.container.prepend(this.overlay);
+  
+        // 初始化视频设置
+        this.videos.forEach(video => {
+          video.removeAttribute('autoplay');
+          video.preload = 'metadata';
+          video.playsInline = true;
+          video.style.opacity = '0';
+        });
+  
+        // 绑定事件
+        this.setupLoading();
+        this.setupPlayControls();
+      }
+  
+      setupLoading() {
+        let loadedCount = 0;
+        
+        const loadHandler = () => {
+          loadedCount++;
+          if (loadedCount === this.videos.length) {
+            this.overlay.style.display = 'block';
+            this.videos.forEach(video => video.style.opacity = '1');
+            this.autoPlayForDesktop();
+          }
+        };
+  
+        this.videos.forEach(video => {
+          video.load();
+          video.addEventListener('loadedmetadata', loadHandler);
+          video.addEventListener('error', (e) => {
+            console.error('Video load error:', e.target.error);
+          });
+        });
+      }
+  
+      setupPlayControls() {
+        const playHandler = () => {
+          this.videos.forEach(video => {
+            video.play().then(() => {
+              this.overlay.style.opacity = '0';
+              setTimeout(() => this.overlay.style.display = 'none', 300);
+            }).catch(console.error);
+          });
+        };
+  
+        this.container.addEventListener('click', playHandler);
+        this.container.addEventListener('touchstart', playHandler);
+      }
+  
+      autoPlayForDesktop() {
+        if (!/Mobi|Android/i.test(navigator.userAgent)) {
+          this.videos.forEach(video => video.play());
+          this.overlay.style.display = 'none';
+        }
+      }
+    }
+  
+    // 初始化所有视频容器
+    document.querySelectorAll('[class^="bal-container-small"]').forEach(container => {
+      new VideoSyncController(container);
+    });
+  });
+  </script>
+  
+  <style>
+  /* 统一视频容器样式 */
+  [class^="bal-container-small"] {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 50;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  [class^="bal-container-small"] video {
+    transition: opacity 0.3s;
+    vertical-align: middle;
+  }
+  
+  /* 保持原有滑动条样式 */
+  .bal-handle {
+    /* 原有滑动条样式 */
+  }
+  </style>
+   
     
 <section class="section">
     <div class="container is-max-desktop">
