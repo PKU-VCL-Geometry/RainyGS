@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="">
+        content="RainyGS: Efficient Rain Synthesis with Physically-Based Gaussian Splatting.">
   <meta name="keywords" content="Novel View Synthesis, Weather Simulation, 3D Gaussian Splatting">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>RainyGS: Efficient Rain Synthesis with Physically-Based Gaussian Splatting</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -41,6 +41,208 @@
   <script src="./static/js/index.js"></script>
 </head>
 <body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">RainyGS: Efficient Rain Synthesis with Physically-Based Gaussian Splatting</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://daiqy.github.io/" target="_blank">Qiyu Dai</a><sup>1,2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://starryuniv.cn/" target="_blank">Xingyu Ni</a><sup>1,2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://qianfanshen.github.io/" target="_blank">Qianfan Shen</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://rachelcmy.github.io/" target="_blank">Mengyu Chu</a><sup>1,2†</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://wenzhengchen.github.io/" target="_blank">Wenzheng Chen</a><sup>1†</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://baoquanchen.info/" target="_blank">Baoquan Chen</a><sup>1,2†</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Peking University</span>
+            <span class="author-block"><sup>2</sup>State Key Laboratory of General AI</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>equal contributions, <sup>†</sup>corresponding author</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="./static/paper.pdf" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://github.com/PKU-VCL-Geometry/rainygs" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper (Comming Soon)</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/PKU-VCL-Geometry/rainygs" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Comming Soon)</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="content has-text-justified">
+      Using multi-view images as input, <b>RainyGS</b> constructs 3D scenes with physically-based Gaussian Splatting techniques to enable efficient and photorealistic rain synthesis.
+    </div>
+  </div>
+</section> -->
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body"  style="height: 280px; position: relative;">
+      <video id="video1" autoplay muted playsinline height="100%">
+        <source src="./static/videos/teaser.mp4" type="video/mp4">
+      </video>
+      <video id="video2" muted loop playsinline height="100%" style="display:none;">
+        <source src="./static/videos/teaser_later.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="content has-text-justified">
+      Using multi-view images as input, <b>RainyGS</b> constructs 3D scenes with physically-based Gaussian Splatting techniques to enable efficient and photorealistic rain synthesis.
+    </div>
+  </div>
+
+  <script>
+    const video1 = document.getElementById('video1');
+    const video2 = document.getElementById('video2');
+
+    // monitor the event of video1 ending, then play video2
+    video1.onended = function() {
+      video1.style.display = 'none'; // hide video1
+      video2.style.display = 'block'; // hide video2
+      video2.play(); // play video2
+    };
+  </script>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We consider the problem of adding dynamic rain effects to in-the-wild scenes in a physically correct manner. Recent advances in scene modeling have made significant progress, 
+            with NeRF and 3DGS techniques emerging as powerful tools for reconstructing complex scenes. However, while effective for novel view synthesis, these methods typically struggle 
+            with challenging scene editing tasks, such as physics-based rain simulation. In contrast, traditional physics-based simulations can generate realistic rain effects, such as 
+            raindrops and splashes, but they often rely on skilled artists to carefully set up high-fidelity scenes. This process lacks flexibility and scalability, limiting its applicability 
+            to broader, open-world environments. 
+          </p>
+          <p>
+            In this work, we introduce <b>RainyGS</b>, a novel approach that leverages the strengths of both physics-based modeling and 3DGS to generate photorealistic, 
+            dynamic rain effects in open-world scenes with physical accuracy. At the core of our method is the integration of physically-based raindrop and shallow water simulation techniques within 
+            the fast 3DGS rendering framework, enabling realistic and efficient simulations of raindrop behavior, splashes, and reflections. Our method supports synthesizing rain effects at over 10 fps, 
+            offering users flexible control over rain intensity—from light drizzles to heavy downpours. We demonstrate that RainyGS performs effectively for both real-world outdoor scenes and large-scale 
+            driving scenarios, delivering more photorealistic and physically accurate rain effects compared to state-of-the-art methods.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <h2 class="title is-3">Overview</h2>
+    <video autoplay muted loop playsinline height="100%">
+      <source src="./static/videos/framework.mp4" type="video/mp4">
+    </video>
+    <div class="content has-text-justified">
+      
+      <b>Pipeline.</b> Given multi-view images as input, we separately reconstruct the appearance and geometry of the scene. 
+      Next, we generate a height map and apply shallow-water simulation to produce dynamic water effects, including waves and splashes. 
+      Auxiliary maps are then used to simulate rain streaks, reflections, and refraction through efficient screen-based ray tracing. 
+      Finally, we integrate all these components to produce realistic dynamic rainy effects.
+    </div>
+  </div>
+  
+</section>
 
 
 
@@ -200,16 +402,16 @@
       new VideoSyncController(container);
     });
   });
-  </script>
+</script>
   
-  <style>
+<style>
   /* 统一视频容器样式 */
   [class^="bal-container-small"] {
     position: relative;
     overflow: hidden;
     cursor: pointer;
   }
-  
+
   .video-overlay {
     position: absolute;
     top: 0;
@@ -221,259 +423,34 @@
     transition: opacity 0.3s;
     pointer-events: none;
   }
-  
+
   [class^="bal-container-small"] video {
     transition: opacity 0.3s;
     vertical-align: middle;
   }
-  </style>
+</style>
    
     
-   <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Visual Results:  MipNeRF360</h2>
-      <div class="content has-text-justified">
-        <p>
-          <b>Rain synthesis results on MipNeRF360 dataset.</b> Our approach achieves high-quality, realistic rain effects, including rain 
-          streaks in the sky, water accumulation on surfaces, and reflection and refraction, etc., in a computationally efficient manner.
-        </p>
-      </div>
-      <div class="columns is-centered">
-  
-        <div class="column">
-          <div class="content">
-            <div class="columns is-centered">
-              <div class="column is-full-width">
-                <div id="treehill" class="bal-container-small">
-        
-                  <div class="bal-after">
-                    <video  muted loop playsinline height="100%">
-                      <source src="./static/example_videos/treehill/renders.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-afterPosition afterLabel">
-                      RainyGS
-                    </div>
-                  </div>
-                
-                  <div class="bal-before">
-                    <div class="bal-before-inset">
-                      <video  muted loop playsinline height="100%">
-                        <source src="./static/example_videos/treehill/src.mp4" type="video/mp4">
-                      </video>
-                      <div class="bal-beforePosition beforeLabel">
-                        Original
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="bal-handle">
-                    <span class=" handle-left-arrow"></span>
-                    <span class="handle-right-arrow"></span>
-                  </div>
-                
-                </div>
-  
-              </div>
-            </div>
-          </div>
-        </div>
-        
-  
-        <div class="column">
-          <div class="content">
-            <div class="columns is-centered">
-              <div class="column is-full-width">
-                <div id="bicycle" class="bal-container-small">
-        
-                  <div class="bal-after">
-                    <video  muted loop playsinline height="100%">
-                      <source src="./static/example_videos/bicycle/renders.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-afterPosition afterLabel">
-                      RainyGS
-                    </div>
-                  </div>
-                
-                  <div class="bal-before">
-                    <div class="bal-before-inset">
-                      <video  muted loop playsinline height="100%">
-                        <source src="./static/example_videos/bicycle/src.mp4" type="video/mp4">
-                      </video>
-                      <div class="bal-beforePosition beforeLabel">
-                        Original
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="bal-handle">
-                    <span class=" handle-left-arrow"></span>
-                    <span class="handle-right-arrow"></span>
-                  </div>
-                
-                </div>
-  
-              </div>
-            </div>
-          </div>
-        </div>
-  
-      
-      </div>
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Visual Results:  MipNeRF360</h2>
+    <div class="content has-text-justified">
+      <p>
+        <b>Rain synthesis results on MipNeRF360 dataset.</b> Our approach achieves high-quality, realistic rain effects, including rain 
+        streaks in the sky, water accumulation on surfaces, and reflection and refraction, etc., in a computationally efficient manner.
+      </p>
     </div>
-  </section>
-  
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Visual Results: Tanks and Temples</h2>
-      <div class="content has-text-justified">
-        <p>
-          <b>Rain synthesis results on Tanks and Temples dataset.</b> Our method delivers high-quality and realistic rain effects, 
-          such as rain streaks in the sky, water pooling on surfaces, and realistic reflections and refractions, while maintaining computational efficiency.
-        </p>
-      </div>
-      <div class="columns is-centered">
-  
-        <div class="column">
-          <div class="content">
-            <div class="columns is-centered">
-              <div class="column is-full-width">
-  
-                <div id="family" class="bal-container-small2">
-  
-                  <div class="bal-after">
-                    <video  muted loop playsinline height="100%">
-                      <source src="./static/example_videos/family/renders.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-afterPosition afterLabel">
-                      RainyGS
-                    </div>
-                  </div>
-                
-  
-                  <div class="bal-before">
-                    <div class="bal-before-inset">
-                      <video  muted loop playsinline height="100%">
-                        <source src="./static/example_videos/family/src.mp4" type="video/mp4">
-                      </video>
-                      <div class="bal-beforePosition beforeLabel">
-                        Original
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="bal-handle">
-                    <span class=" handle-left-arrow"></span>
-                    <span class="handle-right-arrow"></span>
-                  </div>
-                
-  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-  
-        <div class="column">
-          <div class="content">
-            <div class="columns is-centered">
-              <div class="column is-full-width">
-  
-                <div id="truck" class="bal-container-small2">
-        
-                  <div class="bal-after">
-                    <video  muted loop playsinline height="100%">
-                      <source src="./static/example_videos/truck/renders.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-afterPosition afterLabel">
-                      RainyGS
-                    </div>
-                  </div>
-                
-                  <div class="bal-before">
-                    <div class="bal-before-inset">
-                      <video  muted loop playsinline height="100%">
-                        <source src="./static/example_videos/truck/src.mp4" type="video/mp4">
-                      </video>
-                      <div class="bal-beforePosition beforeLabel">
-                        Original
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="bal-handle">
-                    <span class=" handle-left-arrow"></span>
-                    <span class="handle-right-arrow"></span>
-                  </div>
-                
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Visual Results: Waymo Scenes</h2>
-      <div class="content has-text-justified">
-        <p>
-          <b>Rainy Weather Synthesis for Waymo Scenes.</b> Our method facilitates the efficient transformation of continuous autonomous driving scenes into rainy weather conditions, enabling
-          robustness testing of autonomous driving perception algorithms. Additionally, it offers a novel framework for synthesizing adverse weather data in autonomous driving.
-        </p>
-      </div>
-  
-      <div class="columns is-centered">
-  
-        <div class="column">
-          <div class="content">
-            <div class="columns is-centered">
-              <div class="column is-full-width">
-                <div id="waymo181" class="bal-container-small3">
-        
-                  <div class="bal-after">
-                    <video  muted loop playsinline height="100%">
-                      <source src="./static/example_videos/waymo181/renders.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-afterPosition afterLabel">
-                      RainyGS
-                    </div>
-                  </div>
-                
-                  <div class="bal-before">
-                    <div class="bal-before-inset">
-                      <video  muted loop playsinline height="100%">
-                        <source src="./static/example_videos/waymo181/src.mp4" type="video/mp4">
-                      </video>
-                      <div class="bal-beforePosition beforeLabel">
-                        Original
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="bal-handle">
-                    <span class=" handle-left-arrow"></span>
-                    <span class="handle-right-arrow"></span>
-                  </div>
-                
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      
+    <div class="columns is-centered">
+
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div id="waymo362" class="bal-container-small3">
+              <div id="treehill" class="bal-container-small">
       
                 <div class="bal-after">
                   <video  muted loop playsinline height="100%">
-                    <source src="./static/example_videos/waymo362/renders.mp4" type="video/mp4">
+                    <source src="./static/example_videos/treehill/renders.mp4" type="video/mp4">
                   </video>
                   <div class="bal-afterPosition afterLabel">
                     RainyGS
@@ -483,7 +460,142 @@
                 <div class="bal-before">
                   <div class="bal-before-inset">
                     <video  muted loop playsinline height="100%">
-                      <source src="./static/example_videos/waymo362/src.mp4" type="video/mp4">
+                      <source src="./static/example_videos/treehill/src.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="bal-handle">
+                  <span class=" handle-left-arrow"></span>
+                  <span class="handle-right-arrow"></span>
+                </div>
+              
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+              <div id="bicycle" class="bal-container-small">
+      
+                <div class="bal-after">
+                  <video  muted loop playsinline height="100%">
+                    <source src="./static/example_videos/bicycle/renders.mp4" type="video/mp4">
+                  </video>
+                  <div class="bal-afterPosition afterLabel">
+                    RainyGS
+                  </div>
+                </div>
+              
+                <div class="bal-before">
+                  <div class="bal-before-inset">
+                    <video  muted loop playsinline height="100%">
+                      <source src="./static/example_videos/bicycle/src.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="bal-handle">
+                  <span class=" handle-left-arrow"></span>
+                  <span class="handle-right-arrow"></span>
+                </div>
+              
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Visual Results: Tanks and Temples</h2>
+    <div class="content has-text-justified">
+      <p>
+        <b>Rain synthesis results on Tanks and Temples dataset.</b> Our method delivers high-quality and realistic rain effects, 
+        such as rain streaks in the sky, water pooling on surfaces, and realistic reflections and refractions, while maintaining computational efficiency.
+      </p>
+    </div>
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+
+              <div id="family" class="bal-container-small2">
+
+                <div class="bal-after">
+                  <video  muted loop playsinline height="100%">
+                    <source src="./static/example_videos/family/renders.mp4" type="video/mp4">
+                  </video>
+                  <div class="bal-afterPosition afterLabel">
+                    RainyGS
+                  </div>
+                </div>
+              
+
+                <div class="bal-before">
+                  <div class="bal-before-inset">
+                    <video  muted loop playsinline height="100%">
+                      <source src="./static/example_videos/family/src.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="bal-handle">
+                  <span class=" handle-left-arrow"></span>
+                  <span class="handle-right-arrow"></span>
+                </div>
+              
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+
+              <div id="truck" class="bal-container-small2">
+      
+                <div class="bal-after">
+                  <video  muted loop playsinline height="100%">
+                    <source src="./static/example_videos/truck/renders.mp4" type="video/mp4">
+                  </video>
+                  <div class="bal-afterPosition afterLabel">
+                    RainyGS
+                  </div>
+                </div>
+              
+                <div class="bal-before">
+                  <div class="bal-before-inset">
+                    <video  muted loop playsinline height="100%">
+                      <source src="./static/example_videos/truck/src.mp4" type="video/mp4">
                     </video>
                     <div class="bal-beforePosition beforeLabel">
                       Original
@@ -500,188 +612,120 @@
             </div>
           </div>
         </div>
-  
-      </div>  
-  
-      </div>
-  
-    </div>
-  </section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Comparisons of the SOTA Video Generative Model</h2>
-    
-    <!-- 第一行视频 -->
-    <div class="columns is-centered">
-      <div class="column">
-        <div class="content">
-          <div class="columns is-centered">
-            <div class="column is-full-width">
-              <div class="videogen-bal-container-small4">
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                    <video muted loop playsinline height="100%" class="sync-video">
-                      <source src="./static/videos/v2v/treehill/src.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-beforePosition beforeLabel">Original</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="content">
-          <div class="columns is-centered">
-            <div class="column is-full-width">
-              <div class="videogen-bal-container-small4">
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                    <video muted loop playsinline height="100%" class="sync-video">
-                      <source src="./static/videos/v2v/treehill/runway.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-beforePosition beforeLabel">Runway-V2V</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="content">
-          <div class="columns is-centered">
-            <div class="column is-full-width">
-              <div class="videogen-bal-container-small4">
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                    <video muted loop playsinline height="100%" class="sync-video">
-                      <source src="./static/videos/v2v/treehill/renders.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-beforePosition beforeLabel">RainyGS</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 第二行视频 -->
-    <div class="columns is-centered">
-      <div class="column">
-        <div class="content">
-          <div class="columns is-centered">
-            <div class="column is-full-width">
-              <div class="videogen-bal-container-small4">
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                    <video muted loop playsinline height="100%" class="sync-video">
-                      <source src="./static/videos/v2v/truck/src.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-beforePosition beforeLabel">Original</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="content">
-          <div class="columns is-centered">
-            <div class="column is-full-width">
-              <div class="videogen-bal-container-small4">
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                    <video muted loop playsinline height="100%" class="sync-video">
-                      <source src="./static/videos/v2v/truck/runway.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-beforePosition beforeLabel">Runway-V2V</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="content">
-          <div class="columns is-centered">
-            <div class="column is-full-width">
-              <div class="videogen-bal-container-small4">
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                    <video muted loop playsinline height="100%" class="sync-video">
-                      <source src="./static/videos/v2v/truck/renders.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-beforePosition beforeLabel">RainyGS</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const videoRows = document.querySelectorAll('.columns.is-centered');
-  
-  videoRows.forEach(row => {
-    const videos = row.querySelectorAll('.sync-video');
-    let loadedCount = 0;
-    let playStarted = false;
 
-    const tryPlay = () => {
-      if (loadedCount === videos.length && !playStarted) {
-        playStarted = true;
-        videos.forEach(video => {
-          video.currentTime = 0;
-          video.play().catch(e => console.log('Auto-play prevented:', e));
-        });
-      }
-    };
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Visual Results: Waymo Scenes</h2>
+    <div class="content has-text-justified">
+      <p>
+        <b>Rainy Weather Synthesis for Waymo Scenes.</b> Our method facilitates the efficient transformation of continuous autonomous driving scenes into rainy weather conditions, enabling
+        robustness testing of autonomous driving perception algorithms. Additionally, it offers a novel framework for synthesizing adverse weather data in autonomous driving.
+      </p>
+    </div>
 
-    videos.forEach(video => {
-      video.preload = 'auto';
-      video.removeAttribute('autoplay');
+    <div class="columns is-centered">
 
-      const onCanPlay = () => {
-        loadedCount++;
-        tryPlay();
-      };
-
-      video.addEventListener('loadedmetadata', onCanPlay);
-      video.addEventListener('canplay', onCanPlay);
-      video.addEventListener('canplaythrough', onCanPlay);
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+              <div id="waymo181" class="bal-container-small3">
       
-      video.load();
-    });
+                <div class="bal-after">
+                  <video  muted loop playsinline height="100%">
+                    <source src="./static/example_videos/waymo181/renders.mp4" type="video/mp4">
+                  </video>
+                  <div class="bal-afterPosition afterLabel">
+                    RainyGS
+                  </div>
+                </div>
+              
+                <div class="bal-before">
+                  <div class="bal-before-inset">
+                    <video  muted loop playsinline height="100%">
+                      <source src="./static/example_videos/waymo181/src.mp4" type="video/mp4">
+                    </video>
+                    <div class="bal-beforePosition beforeLabel">
+                      Original
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="bal-handle">
+                  <span class=" handle-left-arrow"></span>
+                  <span class="handle-right-arrow"></span>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <div class="column">
+      <div class="content">
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <div id="waymo362" class="bal-container-small3">
+    
+              <div class="bal-after">
+                <video  muted loop playsinline height="100%">
+                  <source src="./static/example_videos/waymo362/renders.mp4" type="video/mp4">
+                </video>
+                <div class="bal-afterPosition afterLabel">
+                  RainyGS
+                </div>
+              </div>
+            
+              <div class="bal-before">
+                <div class="bal-before-inset">
+                  <video  muted loop playsinline height="100%">
+                    <source src="./static/example_videos/waymo362/src.mp4" type="video/mp4">
+                  </video>
+                  <div class="bal-beforePosition beforeLabel">
+                    Original
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bal-handle">
+                <span class=" handle-left-arrow"></span>
+                <span class="handle-right-arrow"></span>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
 
-    setInterval(() => {
-      if (playStarted) {
-        videos.forEach(video => {
-          if (video.currentTime > 9.5) {
-            video.currentTime = 0;
-          }
-        });
-      }
-    }, 10000);
-  });
-});
-</script>
+    </div>  
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Comparisons of the SOTA Video Generative Model</h2>
+    <div class="content has-text-justified">
+      <p>
+        We compare with Runway Gen-3 Alpha Turbo, a leading model for video-to-video generation. 
+        Video generation methods lack 3D consistency and distort scene geometry, while its dynamic rain is unrealistic. 
+        In contrast, RainyGS maintains 3D consistency and generates realistic, evolving water droplets and puddles.
+      </p>
+      <video autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/baseline.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
 
 
 
