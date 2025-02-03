@@ -44,93 +44,116 @@
 
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Visual Results:  MipNeRF360</h2>
-      <div class="content has-text-justified">
-      </div>
-      <div class="columns is-centered">
-  
-        <div class="column">
-          <div class="content">
-            <div class="columns is-centered">
-              <div class="column is-full-width">
-                <div id="treehill" class="bal-container-small">
-        
-                  <div class="bal-after">
-                    <video autoplay muted loop playsinline height="100%">
-                      <source src="./static/example_videos/treehill/renders.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-afterPosition afterLabel">
-                      RainyGS
-                    </div>
-                  </div>
-                
-                  <div class="bal-before">
-                    <div class="bal-before-inset">
-                      <video autoplay muted loop playsinline height="100%">
-                        <source src="./static/example_videos/treehill/src.mp4" type="video/mp4">
-                      </video>
-                      <div class="bal-beforePosition beforeLabel">
-                        Original
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="bal-handle">
-                    <span class=" handle-left-arrow"></span>
-                    <span class="handle-right-arrow"></span>
-                  </div>
-                
-                </div>
-  
-              </div>
-            </div>
-          </div>
+        <h2 class="title is-3">Visual Results: MipNeRF360</h2>
+        <div class="content has-text-justified">
         </div>
-        
-  
-        <div class="column">
-          <div class="content">
-            <div class="columns is-centered">
-              <div class="column is-full-width">
-                <div id="bicycle" class="bal-container-small">
-        
-                  <div class="bal-after">
-                    <video autoplay muted loop playsinline height="100%">
-                      <source src="./static/example_videos/bicycle/renders.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-afterPosition afterLabel">
-                      RainyGS
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="content">
+                    <div class="columns is-centered">
+                        <div class="column is-full-width">
+                            <div id="treehill" class="bal-container-small">
+                                <div class="bal-after">
+                                    <video class="video-pair" data-group="treehill" autoplay muted loop playsinline height="100%">
+                                        <source src="./static/example_videos/treehill/renders.mp4" type="video/mp4">
+                                    </video>
+                                    <div class="bal-afterPosition afterLabel">
+                                        RainyGS
+                                    </div>
+                                </div>
+                                <div class="bal-before">
+                                    <div class="bal-before-inset">
+                                        <video class="video-pair" data-group="treehill" autoplay muted loop playsinline height="100%">
+                                            <source src="./static/example_videos/treehill/src.mp4" type="video/mp4">
+                                        </video>
+                                        <div class="bal-beforePosition beforeLabel">
+                                            Original
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bal-handle">
+                                    <span class="handle-left-arrow"></span>
+                                    <span class="handle-right-arrow"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                
-                  <div class="bal-before">
-                    <div class="bal-before-inset">
-                      <video autoplay muted loop playsinline height="100%">
-                        <source src="./static/example_videos/bicycle/src.mp4" type="video/mp4">
-                      </video>
-                      <div class="bal-beforePosition beforeLabel">
-                        Original
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="bal-handle">
-                    <span class=" handle-left-arrow"></span>
-                    <span class="handle-right-arrow"></span>
-                  </div>
-                
                 </div>
-  
-              </div>
             </div>
-          </div>
-        </div>
-  
-      
-      </div>
-    </div>
-  </section>
 
+            <div class="column">
+                <div class="content">
+                    <div class="columns is-centered">
+                        <div class="column is-full-width">
+                            <div id="bicycle" class="bal-container-small">
+                                <div class="bal-after">
+                                    <video class="video-pair" data-group="bicycle" autoplay muted loop playsinline height="100%">
+                                        <source src="./static/example_videos/bicycle/renders.mp4" type="video/mp4">
+                                    </video>
+                                    <div class="bal-afterPosition afterLabel">
+                                        RainyGS
+                                    </div>
+                                </div>
+                                <div class="bal-before">
+                                    <div class="bal-before-inset">
+                                        <video class="video-pair" data-group="bicycle" autoplay muted loop playsinline height="100%">
+                                            <source src="./static/example_videos/bicycle/src.mp4" type="video/mp4">
+                                        </video>
+                                        <div class="bal-beforePosition beforeLabel">
+                                            Original
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bal-handle">
+                                    <span class="handle-left-arrow"></span>
+                                    <span class="handle-right-arrow"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 为每组视频创建一个加载状态追踪器
+        const videoGroups = {};
+
+        // 获取所有视频元素
+        document.querySelectorAll('.video-pair').forEach(video => {
+            const group = video.dataset.group;
+            
+            // 初始化组状态
+            if (!videoGroups[group]) {
+                videoGroups[group] = {
+                    videos: [],
+                    loadedCount: 0
+                };
+            }
+            
+            // 将视频添加到对应的组
+            videoGroups[group].videos.push(video);
+            
+            // 暂停所有视频的自动播放
+            video.autoplay = false;
+            
+            // 添加加载完成事件监听器
+            video.addEventListener('loadeddata', () => {
+                videoGroups[group].loadedCount++;
+                
+                // 当组内所有视频都加载完成时
+                if (videoGroups[group].loadedCount === videoGroups[group].videos.length) {
+                    // 确保所有视频都从开始处播放
+                    videoGroups[group].videos.forEach(v => {
+                        v.currentTime = 0;
+                        v.play();
+                    });
+                }
+            });
+        });
+    </script>
+</section>
 
 
 
