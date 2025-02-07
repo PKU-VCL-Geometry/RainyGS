@@ -160,30 +160,22 @@ body {
 
 .bal-container-small {
   position: relative;
-  width: 100%;
+  width: 465px;
   height: 305px;
   cursor: grab;
   overflow: hidden;
 }
 .bal-container-small2 {
   position: relative;
-  width: 100%;
+  width: 465px;
   height: 280px;
   cursor: grab;
   overflow: hidden;
 }
-
 .bal-container-small3 {
   position: relative;
-  width: 100%;
+  width: 465px;
   height: 300px;
-  cursor: grab;
-  overflow: hidden;
-}
-.videogen-bal-container-small4 {
-  position: relative;
-  width: 100%;
-  height: 180px;
   cursor: grab;
   overflow: hidden;
 }
@@ -197,6 +189,7 @@ body {
   overflow: hidden;
 }
 
+
 .bal-after {
   display: block;
   position: absolute;
@@ -208,6 +201,19 @@ body {
   height: 100%;
   overflow: hidden;
 }
+.bal-after2 {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  overflow: hidden;
+  clip-path: inset(0 0 0 50%);
+}
+
 
 .bal-before {
   display: block;
@@ -229,8 +235,9 @@ body {
   left: 0;
 }
 
-.bal-after img,
-.bal-before img {
+/* .bal-after video,
+.bal-after2 video, */
+/* .bal-before video {
   object-fit: cover;
   position: absolute;
   width: 100%;
@@ -244,7 +251,7 @@ body {
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
-}
+} */
 
 .bal-beforePosition {
   background: #121212;

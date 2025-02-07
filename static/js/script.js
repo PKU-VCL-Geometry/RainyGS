@@ -8,10 +8,18 @@ class BeforeAfter {
       const handle = beforeAfterContainer.querySelector('.bal-handle');
       var widthChange = 0;
 
-      beforeAfterContainer.querySelector('.bal-before-inset').setAttribute("style", "width: " + beforeAfterContainer.offsetWidth + "px;")
-      window.onresize = function () {
-          beforeAfterContainer.querySelector('.bal-before-inset').setAttribute("style", "width: " + beforeAfterContainer.offsetWidth + "px;")
-      }
+    // beforeAfterContainer.querySelector('.bal-before-inset').setAttribute("style", "width: " + beforeAfterContainer.offsetWidth + "px;")
+    // window.onresize = function () {
+    //     beforeAfterContainer.querySelector('.bal-before-inset').setAttribute("style", "width: " + beforeAfterContainer.offsetWidth + "px;")
+    // }
+      beforeAfterContainer.querySelector('.bal-before-inset').setAttribute("style", "width: " + (beforeAfterContainer.offsetWidth * 2) + "px;")
+    //   window.onresize = function () {
+    //      beforeAfterContainer.querySelector('.bal-before-inset').setAttribute("style", "width: " + (beforeAfterContainer.offsetWidth * 2) + "px;")
+    //   }
+    window.addEventListener('resize', function () {
+        beforeAfterContainer.querySelector('.bal-before-inset').setAttribute("style", "width: " + (beforeAfterContainer.offsetWidth * 2) + "px;");
+    });
+
       before.setAttribute('style', "width: 50%;");
       handle.setAttribute('style', "left: 50%;");
 
@@ -41,6 +49,8 @@ class BeforeAfter {
           let containerWidth = beforeAfterContainer.offsetWidth;
           widthChange = e.offsetX;
           let newWidth = widthChange * 100 / containerWidth;
+        
+          //document.getElementById('widthDisplay').textContent = modifiedCurrentPoint;
 
           if (e.offsetX > 10 && e.offsetX < beforeAfterContainer.offsetWidth - 10) {
               before.setAttribute('style', "width:" + newWidth + "%;");

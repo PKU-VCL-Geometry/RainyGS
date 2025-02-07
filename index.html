@@ -140,24 +140,10 @@
 
 
 
-<!-- <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="content has-text-justified">
-      Using multi-view images as input, <b>RainyGS</b> constructs 3D scenes with physically-based Gaussian Splatting techniques to enable efficient and photorealistic rain synthesis.
-    </div>
-  </div>
-</section> -->
-
-
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body"  style="height: 280px; position: relative;">
-      <video id="video1" autoplay muted playsinline height="100%">
+      <video id="video1" autoplay muted playsinline height="100%" poster="./static/videos/loading.gif">
         <source src="./static/videos/teaser.mp4" type="video/mp4">
       </video>
       <video id="video2" muted loop playsinline height="100%" style="display:none;">
@@ -181,7 +167,6 @@
     };
   </script>
 </section>
-
 
 
 
@@ -245,192 +230,6 @@
 </section>
 
 
-
-<!-- <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    function setupVideos() {
-      document.querySelectorAll('.bal-container-small').forEach(container => {
-        const videos = container.querySelectorAll('video');
-        let loadedCount = 0;
-        const overlay = document.createElement('div');
-        
-        // 创建半透明点击提示层
-        overlay.style.cssText = `
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0,0,0,0.3);
-          z-index: 50;
-          cursor: pointer;
-          transition: opacity 0.3s;
-        `;
-        container.prepend(overlay);
-  
-        // 初始化视频设置
-        videos.forEach(video => {
-          video.removeAttribute('autoplay');
-          video.preload = 'metadata';
-          video.playsInline = true;
-          video.style.opacity = '0'; // 初始隐藏视频
-        });
-  
-        // 同步播放逻辑
-        const tryPlay = () => {
-          loadedCount++;
-          if (loadedCount === videos.length) {
-            overlay.style.display = 'block';
-            videos.forEach(video => video.style.opacity = '1');
-            
-            // 点击容器开始播放
-            const playHandler = () => {
-              videos.forEach(video => {
-                video.play().then(() => {
-                  overlay.style.opacity = '0';
-                  setTimeout(() => overlay.style.display = 'none', 300);
-                }).catch(console.error);
-              });
-            };
-  
-            container.addEventListener('click', playHandler);
-            container.addEventListener('touchstart', playHandler);
-  
-            // 桌面自动播放
-            if (!/Mobi|Android/i.test(navigator.userAgent)) {
-              playHandler();
-            }
-          }
-        };
-  
-        // 加载监听
-        videos.forEach(video => {
-          video.load();
-          video.addEventListener('loadedmetadata', tryPlay);
-        });
-      });
-    }
-  
-    window.addEventListener('load', setupVideos);
-  });
-</script>
-    
-<style>
-  .bal-container-small {
-    position: relative;
-    overflow: hidden;
-  }
-  .bal-container-small video {
-    transition: opacity 0.3s;
-  }
-</style> -->
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // 通用视频控制器
-    class VideoSyncController {
-      constructor(container) {
-        this.container = container;
-        this.videos = Array.from(container.querySelectorAll('video'));
-        this.init();
-      }
-  
-      init() {
-        // 创建遮罩层
-        this.overlay = document.createElement('div');
-        this.overlay.className = 'video-overlay';
-        this.container.prepend(this.overlay);
-  
-        // 初始化视频设置
-        this.videos.forEach(video => {
-          video.removeAttribute('autoplay');
-          video.preload = 'metadata';
-          video.playsInline = true;
-          video.style.opacity = '0';
-        });
-  
-        // 绑定事件
-        this.setupLoading();
-        this.setupPlayControls();
-      }
-  
-      setupLoading() {
-        let loadedCount = 0;
-        
-        const loadHandler = () => {
-          loadedCount++;
-          if (loadedCount === this.videos.length) {
-            this.overlay.style.display = 'block';
-            this.videos.forEach(video => video.style.opacity = '1');
-            this.autoPlayForDesktop();
-          }
-        };
-  
-        this.videos.forEach(video => {
-          video.load();
-          video.addEventListener('loadedmetadata', loadHandler);
-          video.addEventListener('error', (e) => {
-            console.error('Video load error:', e.target.error);
-          });
-        });
-      }
-  
-      setupPlayControls() {
-        const playHandler = () => {
-          this.videos.forEach(video => {
-            video.play().then(() => {
-              this.overlay.style.opacity = '0';
-              setTimeout(() => this.overlay.style.display = 'none', 300);
-            }).catch(console.error);
-          });
-        };
-  
-        this.container.addEventListener('click', playHandler);
-        this.container.addEventListener('touchstart', playHandler);
-      }
-  
-      autoPlayForDesktop() {
-        if (!/Mobi|Android/i.test(navigator.userAgent)) {
-          this.videos.forEach(video => video.play());
-          this.overlay.style.display = 'none';
-        }
-      }
-    }
-  
-    // 初始化所有视频容器
-    document.querySelectorAll('[class^="bal-container-small"]').forEach(container => {
-      new VideoSyncController(container);
-    });
-  });
-</script>
-  
-<style>
-  /* 统一视频容器样式 */
-  [class^="bal-container-small"] {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
-
-  .video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.3);
-    z-index: 50;
-    transition: opacity 0.3s;
-    pointer-events: none;
-  }
-
-  [class^="bal-container-small"] video {
-    transition: opacity 0.3s;
-    vertical-align: middle;
-  }
-</style>
-   
-    
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Visual Results:  MipNeRF360</h2>
@@ -448,10 +247,12 @@
             <div class="column is-full-width">
               <div id="treehill" class="bal-container-small">
       
+                <div class="bal-after2">
+                    <video autoplay muted loop playsinline>
+                      <source src="./static/example_videos/treehill/full.mp4" type="video/mp4">
+                    </video>
+                </div>
                 <div class="bal-after">
-                  <video  muted loop playsinline height="100%">
-                    <source src="./static/example_videos/treehill/renders.mp4" type="video/mp4">
-                  </video>
                   <div class="bal-afterPosition afterLabel">
                     RainyGS
                   </div>
@@ -459,9 +260,10 @@
               
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video  muted loop playsinline height="100%">
-                      <source src="./static/example_videos/treehill/src.mp4" type="video/mp4">
-                    </video>
+                      <video autoplay muted loop playsinline>
+                        <source src="./static/example_videos/treehill/full.mp4" type="video/mp4">
+                      </video>
+
                     <div class="bal-beforePosition beforeLabel">
                       Original
                     </div>
@@ -487,10 +289,12 @@
             <div class="column is-full-width">
               <div id="bicycle" class="bal-container-small">
       
-                <div class="bal-after">
-                  <video  muted loop playsinline height="100%">
-                    <source src="./static/example_videos/bicycle/renders.mp4" type="video/mp4">
+                <div class="bal-after2">
+                  <video autoplay muted loop playsinline>
+                    <source src="./static/example_videos/bicycle/full.mp4" type="video/mp4">
                   </video>
+                </div>
+                <div class="bal-after">
                   <div class="bal-afterPosition afterLabel">
                     RainyGS
                   </div>
@@ -498,8 +302,8 @@
               
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video  muted loop playsinline height="100%">
-                      <source src="./static/example_videos/bicycle/src.mp4" type="video/mp4">
+                    <video autoplay muted loop playsinline>
+                      <source src="./static/example_videos/bicycle/full.mp4" type="video/mp4">
                     </video>
                     <div class="bal-beforePosition beforeLabel">
                       Original
@@ -524,6 +328,7 @@
   </div>
 </section>
 
+
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Visual Results: Tanks and Temples</h2>
@@ -542,10 +347,12 @@
 
               <div id="family" class="bal-container-small2">
 
-                <div class="bal-after">
-                  <video  muted loop playsinline height="100%">
-                    <source src="./static/example_videos/family/renders.mp4" type="video/mp4">
+                <div class="bal-after2">
+                  <video autoplay muted loop playsinline>
+                    <source src="./static/example_videos/family/full.mp4" type="video/mp4">
                   </video>
+                </div>
+                <div class="bal-after">
                   <div class="bal-afterPosition afterLabel">
                     RainyGS
                   </div>
@@ -554,8 +361,8 @@
 
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video  muted loop playsinline height="100%">
-                      <source src="./static/example_videos/family/src.mp4" type="video/mp4">
+                    <video autoplay muted loop playsinline>
+                      <source src="./static/example_videos/family/full.mp4" type="video/mp4">
                     </video>
                     <div class="bal-beforePosition beforeLabel">
                       Original
@@ -583,10 +390,12 @@
 
               <div id="truck" class="bal-container-small2">
       
-                <div class="bal-after">
-                  <video  muted loop playsinline height="100%">
-                    <source src="./static/example_videos/truck/renders.mp4" type="video/mp4">
+                <div class="bal-after2">
+                  <video autoplay muted loop playsinline>
+                    <source src="./static/example_videos/truck/full.mp4" type="video/mp4">
                   </video>
+                </div>
+                <div class="bal-after">
                   <div class="bal-afterPosition afterLabel">
                     RainyGS
                   </div>
@@ -594,8 +403,8 @@
               
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video  muted loop playsinline height="100%">
-                      <source src="./static/example_videos/truck/src.mp4" type="video/mp4">
+                    <video autoplay muted loop playsinline>
+                      <source src="./static/example_videos/truck/full.mp4" type="video/mp4">
                     </video>
                     <div class="bal-beforePosition beforeLabel">
                       Original
@@ -636,10 +445,12 @@
             <div class="column is-full-width">
               <div id="waymo181" class="bal-container-small3">
       
-                <div class="bal-after">
-                  <video  muted loop playsinline height="100%">
-                    <source src="./static/example_videos/waymo181/renders.mp4" type="video/mp4">
+                <div class="bal-after2">
+                  <video autoplay muted loop playsinline>
+                    <source src="./static/example_videos/waymo181/full.mp4" type="video/mp4">
                   </video>
+                </div>
+                <div class="bal-after">
                   <div class="bal-afterPosition afterLabel">
                     RainyGS
                   </div>
@@ -647,8 +458,8 @@
               
                 <div class="bal-before">
                   <div class="bal-before-inset">
-                    <video  muted loop playsinline height="100%">
-                      <source src="./static/example_videos/waymo181/src.mp4" type="video/mp4">
+                    <video autoplay muted loop playsinline>
+                      <source src="./static/example_videos/waymo181/full.mp4" type="video/mp4">
                     </video>
                     <div class="bal-beforePosition beforeLabel">
                       Original
@@ -673,10 +484,12 @@
           <div class="column is-full-width">
             <div id="waymo362" class="bal-container-small3">
     
-              <div class="bal-after">
-                <video  muted loop playsinline height="100%">
-                  <source src="./static/example_videos/waymo362/renders.mp4" type="video/mp4">
+              <div class="bal-after2">
+                <video autoplay muted loop playsinline>
+                  <source src="./static/example_videos/waymo362/full.mp4" type="video/mp4">
                 </video>
+              </div>
+              <div class="bal-after">
                 <div class="bal-afterPosition afterLabel">
                   RainyGS
                 </div>
@@ -684,8 +497,8 @@
             
               <div class="bal-before">
                 <div class="bal-before-inset">
-                  <video  muted loop playsinline height="100%">
-                    <source src="./static/example_videos/waymo362/src.mp4" type="video/mp4">
+                  <video autoplay muted loop playsinline>
+                    <source src="./static/example_videos/waymo362/full.mp4" type="video/mp4">
                   </video>
                   <div class="bal-beforePosition beforeLabel">
                     Original
@@ -709,6 +522,8 @@
 
   </div>
 </section>
+
+<!-- <p>The width of the container is: <span id="widthDisplay">Loading...</span> pixels</p> -->
 
 
 <section class="section">
