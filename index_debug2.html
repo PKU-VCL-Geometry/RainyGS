@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Single Video Comparison</title>
+  <style>
+    body {
+        font-family: 'Noto Sans', sans-serif;
+    }
+    .video-compare-container {
+        width: 63%;
+        margin: 0 auto;
+        position: relative;
+        display: block;
+        line-height: 0;
+    }
+    .videoMerge {
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        background-size: cover;
+    }
+  </style>
+</head>
+<body>
+    <div class="video-compare-container" id="ours" style="width: 100%">
+        <video class="video" id="simulation_video1" loop="" playsinline="" autoplay="" muted=""
+          poster="./static/videos/loading.gif" src="./static/example_videos/treehill/full.mp4"
+          onplay="resizeAndPlay(this)">
+        </video>
+        <canvas class="videoMerge" id="simulation_video1Merge"></canvas>
+    </div>
+
+    <div class="video-compare-container" id="ours" style="width: 100%">
+        <video class="video" id="simulation_video2" loop="" playsinline="" autoplay="" muted=""
+          poster="./static/videos/loading.gif" src="./static/example_videos/treehill/full.mp4"
+          onplay="resizeAndPlay(this)">
+        </video>
+        <canvas class="videoMerge" id="simulation_video2Merge"></canvas>
+    </div>
+
+    <script>
+        function playVids(videoId) {
+            var videoMerge = document.getElementById(videoId + "Merge");
+            var vid = document.getElementById(videoId);
+
+            var position = 0.5;
+            var vidWidth = vid.videoWidth / 2;
+            var vidHeight = vid.videoHeight;
+
+            // 计算缩放比例
+            var scale = vidHeight / 832; // 假设基准高度为1080px
+            
+            // 固定控件尺寸
+            const CONTROLS = {
+                circle: {
+                    radius: 40 * scale,
+                    lineWidth: 4 * scale
+                },
+                arrows: {
+                    size: 13 * scale,
+                    offset: 25 * scale
+                },
+                labels: {
+                    height: 50 * scale,
+                    padding: 15 * scale,
+                    fontSize: 30 * scale,
+                    cornerRadius: 8 * scale,
+                    bottomOffset: 80 * scale,
+                    leftWidth: 140 * scale,
+                    rightWidth: 155 * scale,
+                    sideMargin: 20 * scale
+                }
+            };
+
+            var mergeContext = videoMerge.getContext("2d");
+
+            if (vid.readyState > 3) {
+                vid.play();
+
+                function trackLocation(e) {
+                    bcr = videoMerge.getBoundingClientRect();
+                    position = ((e.pageX - bcr.x) / bcr.width);
+                }
+                function trackLocationTouch(e) {
+                    bcr = videoMerge.getBoundingClientRect();
+                    position = ((e.touches[0].pageX - bcr.x) / bcr.width);
+                }
+
+                videoMerge.addEventListener("mousemove", trackLocation, false); 
+                videoMerge.addEventListener("touchstart", trackLocationTouch, false);
+                videoMerge.addEventListener("touchmove", trackLocationTouch, false);
+
+                function drawLoop() {
+                    mergeContext.drawImage(vid, 0, 0, vidWidth, vidHeight, 0, 0, vidWidth, vidHeight);
+                    var colStart = (vidWidth * position).clamp(0.0, vidWidth);
+                    var colWidth = (vidWidth - (vidWidth * position)).clamp(0.0, vidWidth);
+                    mergeContext.drawImage(vid, colStart + vidWidth, 0, colWidth, vidHeight, colStart, 0, colWidth, vidHeight);
+                    requestAnimationFrame(drawLoop);
+
+                    // 分割线
+                    mergeContext.beginPath();
+                    var circleCenterX = vidWidth * position;
+                    mergeContext.moveTo(circleCenterX, 0);
+                    mergeContext.lineTo(circleCenterX, vidHeight / 2 - CONTROLS.circle.radius);
+                    mergeContext.moveTo(circleCenterX, vidHeight / 2 + CONTROLS.circle.radius);
+                    mergeContext.lineTo(circleCenterX, vidHeight);
+                    mergeContext.closePath();
+                    mergeContext.strokeStyle = "#FFFFFF";
+                    mergeContext.lineWidth = CONTROLS.circle.lineWidth;
+                    mergeContext.stroke();
+
+                    // 圆形
+                    mergeContext.beginPath();
+                    mergeContext.arc(circleCenterX, vidHeight / 2, CONTROLS.circle.radius, 0, Math.PI * 2, false);
+                    mergeContext.fillStyle = "rgba(255, 255, 255, 0.2)";
+                    mergeContext.fill();
+                    mergeContext.lineWidth = CONTROLS.circle.lineWidth;
+                    mergeContext.strokeStyle = "#FFFFFF";
+                    mergeContext.stroke();
+
+                    // 箭头
+                    // 左箭头
+                    mergeContext.beginPath();
+                    mergeContext.moveTo(circleCenterX - CONTROLS.arrows.size, vidHeight / 2 - CONTROLS.arrows.size);
+                    mergeContext.lineTo(circleCenterX - CONTROLS.arrows.offset, vidHeight / 2);
+                    mergeContext.lineTo(circleCenterX - CONTROLS.arrows.size, vidHeight / 2 + CONTROLS.arrows.size);
+                    mergeContext.closePath();
+                    mergeContext.fillStyle = "#FFFFFF";
+                    mergeContext.fill();
+
+                    // 右箭头
+                    mergeContext.beginPath();
+                    mergeContext.moveTo(circleCenterX + CONTROLS.arrows.size, vidHeight / 2 - CONTROLS.arrows.size);
+                    mergeContext.lineTo(circleCenterX + CONTROLS.arrows.offset, vidHeight / 2);
+                    mergeContext.lineTo(circleCenterX + CONTROLS.arrows.size, vidHeight / 2 + CONTROLS.arrows.size);
+                    mergeContext.closePath();
+                    mergeContext.fillStyle = "#FFFFFF";
+                    mergeContext.fill();
+
+                    // 文本标签
+                    const rectY = vidHeight - CONTROLS.labels.bottomOffset;
+                    
+                    // 左侧标签
+                    mergeContext.save();
+                    mergeContext.beginPath();
+                    mergeContext.rect(0, 0, vidWidth * position - CONTROLS.circle.lineWidth / 2, vidHeight);
+                    mergeContext.clip();
+
+                    drawRoundedRect(
+                        mergeContext,
+                        CONTROLS.labels.sideMargin,
+                        rectY,
+                        CONTROLS.labels.leftWidth,
+                        CONTROLS.labels.height,
+                        CONTROLS.labels.cornerRadius
+                    );
+
+                    mergeContext.fillStyle = "#FFFFFF";
+                    mergeContext.font = `${CONTROLS.labels.fontSize}px 'Noto Sans', sans-serif`;
+                    mergeContext.fillText(
+                        "Original",
+                        CONTROLS.labels.sideMargin + CONTROLS.labels.padding,
+                        rectY + CONTROLS.labels.height - CONTROLS.labels.padding
+                    );
+                    mergeContext.restore();
+
+                    // 右侧标签
+                    mergeContext.save();
+                    mergeContext.beginPath();
+                    mergeContext.rect(vidWidth * position + CONTROLS.circle.lineWidth / 2, 0, vidWidth - vidWidth * position, vidHeight);
+                    mergeContext.clip();
+
+                    drawRoundedRect(
+                        mergeContext,
+                        vidWidth - CONTROLS.labels.rightWidth - CONTROLS.labels.sideMargin,
+                        rectY,
+                        CONTROLS.labels.rightWidth,
+                        CONTROLS.labels.height,
+                        CONTROLS.labels.cornerRadius
+                    );
+
+                    mergeContext.fillStyle = "#FFFFFF";
+                    mergeContext.font = `${CONTROLS.labels.fontSize}px 'Noto Sans', sans-serif`;
+                    mergeContext.fillText(
+                        "RainyGS",
+                        vidWidth - CONTROLS.labels.rightWidth - CONTROLS.labels.sideMargin + CONTROLS.labels.padding,
+                        rectY + CONTROLS.labels.height - CONTROLS.labels.padding
+                    );
+                    mergeContext.restore();
+                }   
+
+                requestAnimationFrame(drawLoop);
+            } 
+        }
+
+        function drawRoundedRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.arcTo(x + width, y, x + width, y + height, radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.arcTo(x + width, y + height, x + width - radius, y + height, radius);
+            ctx.lineTo(x + radius, y + height);
+            ctx.arcTo(x, y + height, x, y + height - radius, radius);
+            ctx.lineTo(x, y + radius);
+            ctx.arcTo(x, y, x + radius, y, radius);
+            ctx.closePath();
+            ctx.fillStyle = "#121212";
+            ctx.fill();
+        }
+
+        Number.prototype.clamp = function(min, max) {
+            return Math.min(Math.max(this, min), max);
+        };
+            
+        function resizeAndPlay(element) {
+            var cv = document.getElementById(element.id + "Merge");
+            cv.width = element.videoWidth / 2;
+            cv.height = element.videoHeight;
+            element.play();
+            element.style.height = "0px";
+            playVids(element.id);
+        }
+    </script>
+</body>
+</html>
