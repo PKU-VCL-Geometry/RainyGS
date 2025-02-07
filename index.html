@@ -39,6 +39,7 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="static/js/script.js"></script>
 </head>
 <body>
 
@@ -245,38 +246,13 @@
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div id="treehill" class="bal-container-small">
-      
-                <div class="bal-after2">
-                    <video autoplay muted loop playsinline>
-                      <source src="./static/example_videos/treehill/full.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="bal-after">
-                  <div class="bal-afterPosition afterLabel">
-                    RainyGS
-                  </div>
-                </div>
-              
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                      <video autoplay muted loop playsinline>
-                        <source src="./static/example_videos/treehill/full.mp4" type="video/mp4">
-                      </video>
-
-                    <div class="bal-beforePosition beforeLabel">
-                      Original
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="bal-handle">
-                  <span class=" handle-left-arrow"></span>
-                  <span class="handle-right-arrow"></span>
-                </div>
-              
+              <div id="treehill" class="video-compare-container">
+              <video class="video" id="treehill_video" loop="" playsinline="" autoplay="" muted=""
+                poster="./static/videos/loading.gif" src="./static/example_videos/treehill/full.mp4"
+                onplay="resizeAndPlay(this)">
+              </video>
+              <canvas class="videoMerge" id="treehill_videoMerge"></canvas>
               </div>
-
             </div>
           </div>
         </div>
@@ -287,37 +263,13 @@
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div id="bicycle" class="bal-container-small">
-      
-                <div class="bal-after2">
-                  <video autoplay muted loop playsinline>
-                    <source src="./static/example_videos/bicycle/full.mp4" type="video/mp4">
-                  </video>
-                </div>
-                <div class="bal-after">
-                  <div class="bal-afterPosition afterLabel">
-                    RainyGS
-                  </div>
-                </div>
-              
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                    <video autoplay muted loop playsinline>
-                      <source src="./static/example_videos/bicycle/full.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-beforePosition beforeLabel">
-                      Original
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="bal-handle">
-                  <span class=" handle-left-arrow"></span>
-                  <span class="handle-right-arrow"></span>
-                </div>
-              
+              <div id="bicycle" class="video-compare-container">
+              <video class="video" id="bicycle_video" loop="" playsinline="" autoplay="" muted=""
+                poster="./static/videos/loading.gif" src="./static/example_videos/bicycle/full.mp4"
+                onplay="resizeAndPlay(this)">
+              </video>
+              <canvas class="videoMerge" id="bicycle_videoMerge"></canvas>
               </div>
-
             </div>
           </div>
         </div>
@@ -327,7 +279,6 @@
     </div>
   </div>
 </section>
-
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -344,88 +295,37 @@
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-
-              <div id="family" class="bal-container-small2">
-
-                <div class="bal-after2">
-                  <video autoplay muted loop playsinline>
-                    <source src="./static/example_videos/family/full.mp4" type="video/mp4">
-                  </video>
-                </div>
-                <div class="bal-after">
-                  <div class="bal-afterPosition afterLabel">
-                    RainyGS
-                  </div>
-                </div>
-              
-
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                    <video autoplay muted loop playsinline>
-                      <source src="./static/example_videos/family/full.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-beforePosition beforeLabel">
-                      Original
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="bal-handle">
-                  <span class=" handle-left-arrow"></span>
-                  <span class="handle-right-arrow"></span>
-                </div>
-              
-
+              <div id="family" class="video-compare-container">
+              <video class="video" id="family_video" loop="" playsinline="" autoplay="" muted=""
+                poster="./static/videos/loading.gif" src="./static/example_videos/family/full.mp4"
+                onplay="resizeAndPlay(this)">
+              </video>
+              <canvas class="videoMerge" id="family_videoMerge"></canvas>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
 
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-
-              <div id="truck" class="bal-container-small2">
-      
-                <div class="bal-after2">
-                  <video autoplay muted loop playsinline>
-                    <source src="./static/example_videos/truck/full.mp4" type="video/mp4">
-                  </video>
-                </div>
-                <div class="bal-after">
-                  <div class="bal-afterPosition afterLabel">
-                    RainyGS
-                  </div>
-                </div>
-              
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                    <video autoplay muted loop playsinline>
-                      <source src="./static/example_videos/truck/full.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-beforePosition beforeLabel">
-                      Original
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="bal-handle">
-                  <span class=" handle-left-arrow"></span>
-                  <span class="handle-right-arrow"></span>
-                </div>
-              
+              <div id="truck" class="video-compare-container">
+              <video class="video" id="truck_video" loop="" playsinline="" autoplay="" muted=""
+                poster="./static/videos/loading.gif" src="./static/example_videos/truck/full.mp4"
+                onplay="resizeAndPlay(this)">
+              </video>
+              <canvas class="videoMerge" id="truck_videoMerge"></canvas>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
-
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -443,87 +343,40 @@
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div id="waymo181" class="bal-container-small3">
-      
-                <div class="bal-after2">
-                  <video autoplay muted loop playsinline>
-                    <source src="./static/example_videos/waymo181/full.mp4" type="video/mp4">
-                  </video>
-                </div>
-                <div class="bal-after">
-                  <div class="bal-afterPosition afterLabel">
-                    RainyGS
-                  </div>
-                </div>
-              
-                <div class="bal-before">
-                  <div class="bal-before-inset">
-                    <video autoplay muted loop playsinline>
-                      <source src="./static/example_videos/waymo181/full.mp4" type="video/mp4">
-                    </video>
-                    <div class="bal-beforePosition beforeLabel">
-                      Original
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="bal-handle">
-                  <span class=" handle-left-arrow"></span>
-                  <span class="handle-right-arrow"></span>
-                </div>
-              
+              <div id="waymo181" class="video-compare-container">
+              <video class="video" id="waymo181_video" loop="" playsinline="" autoplay="" muted=""
+                poster="./static/videos/loading.gif" src="./static/example_videos/waymo181/full.mp4"
+                onplay="resizeAndPlay(this)">
+              </video>
+              <canvas class="videoMerge" id="waymo181_videoMerge"></canvas>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-    <div class="column">
-      <div class="content">
-        <div class="columns is-centered">
-          <div class="column is-full-width">
-            <div id="waymo362" class="bal-container-small3">
-    
-              <div class="bal-after2">
-                <video autoplay muted loop playsinline>
-                  <source src="./static/example_videos/waymo362/full.mp4" type="video/mp4">
-                </video>
-              </div>
-              <div class="bal-after">
-                <div class="bal-afterPosition afterLabel">
-                  RainyGS
-                </div>
-              </div>
-            
-              <div class="bal-before">
-                <div class="bal-before-inset">
-                  <video autoplay muted loop playsinline>
-                    <source src="./static/example_videos/waymo362/full.mp4" type="video/mp4">
-                  </video>
-                  <div class="bal-beforePosition beforeLabel">
-                    Original
-                  </div>
-                </div>
-              </div>
-            
-              <div class="bal-handle">
-                <span class=" handle-left-arrow"></span>
-                <span class="handle-right-arrow"></span>
-              </div>
-            
             </div>
           </div>
         </div>
       </div>
 
-    </div>  
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+              <div id="waymo362" class="video-compare-container">
+              <video class="video" id="waymo362_video" loop="" playsinline="" autoplay="" muted=""
+                poster="./static/videos/loading.gif" src="./static/example_videos/waymo362/full.mp4"
+                onplay="resizeAndPlay(this)">
+              </video>
+              <canvas class="videoMerge" id="waymo362_videoMerge"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
     </div>
 
   </div>
 </section>
 
-<!-- <p>The width of the container is: <span id="widthDisplay">Loading...</span> pixels</p> -->
 
 
 <section class="section">
@@ -567,30 +420,6 @@
   </div>
 </footer>
 
-<script src="static/js/script.js"></script>
-
-<script>
-    new BeforeAfter({
-        id: '#treehill'
-    });
-    new BeforeAfter({
-        id: '#bicycle'
-    });
-    new BeforeAfter({
-        id: '#family'
-    });
-
-    new BeforeAfter({
-        id: '#truck'
-    });
-    new BeforeAfter({
-        id: '#waymo181'
-    });
-    new BeforeAfter({
-        id: '#waymo362'
-    });
-
-</script>
 
 </body>
 </html>
