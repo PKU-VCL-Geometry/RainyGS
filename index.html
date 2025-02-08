@@ -144,15 +144,15 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <!-- <div class="hero-body"  style="height: 280px; position: relative;"> -->
-      <div class="video-compare-container">
+      <!-- <div class="video-compare-container"> -->
         <img src="./static/videos/loading.gif" alt="loading" class="loading-gif2" id="teaser_loading">
-        <video id="teaser_video1" autoplay muted playsinline height="100%" onloadeddata="removeLoading('teaser')">
+        <video id="teaser_video1" autoplay muted playsinline onloadeddata="removeLoading('teaser')">
           <source src="./static/videos/teaser.mp4" type="video/mp4">
         </video>
-        <video id="teaser_video2" muted loop playsinline height="100%" style="display:none;">
+        <video id="teaser_video2" muted loop playsinline style="display:none;">
           <source src="./static/videos/teaser_later.mp4" type="video/mp4">
         </video>
-      </div>
+      <!-- </div> -->
     <!-- </div> -->
     <div class="content has-text-justified">
       Using multi-view images as input, <b>RainyGS</b> constructs 3D scenes with physically-based Gaussian Splatting techniques to enable efficient and photorealistic rain synthesis.
