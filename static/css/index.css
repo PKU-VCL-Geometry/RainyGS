@@ -173,7 +173,7 @@ body {
   margin: 0 auto;
   position: relative;
   display: block;
-  line-height: 0;
+  /* line-height: 0; */
 }
 
 .loading-gif {
@@ -192,8 +192,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30%;
-  height: 30%;
-  object-fit: cover;
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
   transition: opacity 0.3s ease;
 }
