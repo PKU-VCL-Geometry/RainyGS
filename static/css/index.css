@@ -174,7 +174,6 @@ body {
   position: relative;
   display: block;
   line-height: 0;
-  min-height: 100px;
 }
 
 .loading-gif {
