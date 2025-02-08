@@ -184,6 +184,18 @@ function resizeAndPlay(element) {
     playVids(element.id);
 }
 
+function removeLoading(videoId) {
+    var loadingGif = document.getElementById(videoId + '_loading');
+    if (loadingGif) {
+      // Use opacity transition to ensure smooth disappearance
+      loadingGif.style.opacity = 0;
+      
+      // Optionally, after the transition, set display to 'none'
+      setTimeout(function() {
+        loadingGif.style.display = 'none';
+      }, 300); // Matches the transition duration
+    }
+}
 // function playVids(videoId) {
 //     var videoMerge = document.getElementById(videoId + "Merge");
 //     var vid = document.getElementById(videoId);
