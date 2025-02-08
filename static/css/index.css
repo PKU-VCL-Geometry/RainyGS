@@ -174,7 +174,6 @@ body {
   position: relative;
   display: block;
   line-height: 0;
-  min-height: 100px;
 }
 
 .loading-gif {
@@ -182,8 +181,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
+  width: 50%;
+  height: 50%;
   object-fit: contain;
   transition: opacity 0.3s ease;
 }
@@ -193,8 +192,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
-  height: 50%;
+  width: 30%;
+  height: 30%;
   object-fit: cover;
   transition: opacity 0.3s ease;
 }
