@@ -189,11 +189,7 @@ function removeLoading(videoId) {
     if (loadingGif) {
       // Use opacity transition to ensure smooth disappearance
       loadingGif.style.opacity = 0;
-      
-      // Optionally, after the transition, set display to 'none'
-      setTimeout(function() {
-        loadingGif.style.display = 'none';
-      }, 300); // Matches the transition duration
+      loadingGif.style.display = 'none';
     }
 }
 // function playVids(videoId) {
