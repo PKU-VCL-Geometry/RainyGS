@@ -143,9 +143,9 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <!-- <div class="hero-body"  style="height: 280px; position: relative;"> -->
-      <div class="video-compare-container">
-        <img src="./static/videos/loading.gif" alt="loading" class="loading-gif2" id="teaser_loading">
-        <video id="teaser_video1" autoplay muted playsinline onloadeddata="removeLoading('teaser')">
+      <div class="video-container-teaser">
+        <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif2" id="teaser_loading"> -->
+        <video id="teaser_video1" autoplay muted playsinline poster="./static/videos/loading.gif">
           <source src="./static/videos/teaser.mp4" type="video/mp4">
         </video>
         <video id="teaser_video2" muted loop playsinline style="display:none;">
@@ -218,11 +218,10 @@
   <div class="container is-max-desktop">
 
     <h2 class="title is-3">Overview</h2>
-    <div class="video-compare-container">
-      <video autoplay muted loop playsinline height="100%" onloadeddata="removeLoading('framework')">
+    <div class="video-container-framework">
+      <video autoplay muted loop playsinline poster="./static/videos/loading.gif">
         <source src="./static/videos/framework.mp4" type="video/mp4">
       </video>
-      <img src="./static/videos/loading.gif" alt="loading" class="loading-gif2" id="framework_loading">
     </div>
     <div class="content has-text-justified">
       <b>Pipeline.</b> Given multi-view images as input, we separately reconstruct the appearance and geometry of the scene. 
@@ -253,10 +252,11 @@
               <div id="treehill" class="video-compare-container">
               <video class="video" id="treehill_video" loop="" playsinline="" autoplay="" muted=""
                 src="./static/example_videos/treehill/full.mp4"
-                onplay="resizeAndPlay(this)" onloadeddata="removeLoading('treehill')">
+                width=100% height=100% object-fit=cover poster="./static/videos/loading.gif"
+                onplay="resizeAndPlay(this)">
               </video>
               <canvas class="videoMerge" id="treehill_videoMerge"></canvas>
-              <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="treehill_loading">
+              <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="treehill_loading"> -->
               </div>
             </div>
           </div>
@@ -271,10 +271,11 @@
               <div id="bicycle" class="video-compare-container">
               <video class="video" id="bicycle_video" loop="" playsinline="" autoplay="" muted=""
                 src="./static/example_videos/bicycle/full.mp4"
-                onplay="resizeAndPlay(this)" onloadeddata="removeLoading('bicycle')">
+                width=100% height=100% object-fit=cover poster="./static/videos/loading.gif"
+                onplay="resizeAndPlay(this)">
               </video>
               <canvas class="videoMerge" id="bicycle_videoMerge"></canvas>
-              <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="bicycle_loading">
+              <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="bicycle_loading"> -->
               </div>
             </div>
           </div>
@@ -305,10 +306,11 @@
               <div id="family" class="video-compare-container">
               <video class="video" id="family_video" loop="" playsinline="" autoplay="" muted=""
                 src="./static/example_videos/family/full.mp4"
-                onplay="resizeAndPlay(this)" onloadeddata="removeLoading('family')">
+                width=100% height=100% object-fit=cover poster="./static/videos/loading.gif"
+                onplay="resizeAndPlay(this)">
               </video>
               <canvas class="videoMerge" id="family_videoMerge"></canvas>
-              <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="family_loading">
+              <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="family_loading"> -->
               </div>
             </div>
           </div>
@@ -322,10 +324,11 @@
               <div id="truck" class="video-compare-container">
               <video class="video" id="truck_video" loop="" playsinline="" autoplay="" muted=""
                 src="./static/example_videos/truck/full.mp4"
-                onplay="resizeAndPlay(this)" onloadeddata="removeLoading('truck')">
+                width=100% height=100% object-fit=cover poster="./static/videos/loading.gif"
+                onplay="resizeAndPlay(this)">
               </video>
               <canvas class="videoMerge" id="truck_videoMerge"></canvas>
-              <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="truck_loading">
+              <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="truck_loading"> -->
               </div>
             </div>
           </div>
@@ -355,10 +358,11 @@
               <div id="waymo181" class="video-compare-container">
               <video class="video" id="waymo181_video" loop="" playsinline="" autoplay="" muted=""
                 src="./static/example_videos/waymo181/full.mp4"
-                onplay="resizeAndPlay(this); removeLoading('waymo181')">
+                width=100% height=100% object-fit=cover poster="./static/videos/loading.gif"
+                onplay="resizeAndPlay(this)">
               </video>
               <canvas class="videoMerge" id="waymo181_videoMerge"></canvas>
-              <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="waymo181_loading">
+              <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="waymo181_loading"> -->
               </div>
             </div>
           </div>
@@ -372,10 +376,11 @@
               <div id="waymo362" class="video-compare-container">
               <video class="video" id="waymo362_video" loop="" playsinline="" autoplay="" muted=""
                 src="./static/example_videos/waymo362/full.mp4"
-                onplay="resizeAndPlay(this); removeLoading('waymo362')">
+                width=100% height=100% object-fit=cover poster="./static/videos/loading.gif"
+                onplay="resizeAndPlay(this)">
               </video>
               <canvas class="videoMerge" id="waymo362_videoMerge"></canvas>
-              <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="waymo362_loading">
+              <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="waymo362_loading"> -->
               </div>
             </div>
           </div>
@@ -399,9 +404,9 @@
         Video generation methods lack 3D consistency and distort scene geometry, while its dynamic rain is unrealistic. 
         In contrast, RainyGS maintains 3D consistency and generates realistic, evolving water droplets and puddles.
       </p>
-      <div class="video-compare-container">
-        <img src="./static/videos/loading.gif" alt="loading" class="loading-gif2" id="videogen_loading">
-        <video autoplay muted loop playsinline onloadeddata="removeLoading('videogen')">
+      <div class="video-container-baseline">
+        <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif2" id="videogen_loading"> -->
+        <video autoplay muted loop playsinline poster="./static/videos/loading.gif">
           <source src="./static/videos/baseline.mp4" type="video/mp4">
         </video>
       </div>

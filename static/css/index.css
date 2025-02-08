@@ -168,12 +168,43 @@ body {
   background-size: cover;
 }
 
-.video-compare-container {
+.video-container-teaser {
   width: 100%;
   margin: 0 auto;
   position: relative;
   display: block;
-  /* line-height: 0; */
+  aspect-ratio: 2160/612;
+}
+.video-container-framework {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  aspect-ratio: 2160/564;
+}
+.video-container-baseline {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  aspect-ratio: 2160/880;
+}
+.video-container-treehill-bicycle {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  aspect-ratio: 2472/822;
+}
+
+.video-container-teaser video,
+.video-container-framework video,
+.video-container-baseline video,
+.video-container-treehill-bicycle video{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .loading-gif {

@@ -10,7 +10,7 @@ function playVids(videoId) {
     var vidHeight = vid.videoHeight;
 
     // 计算缩放比例
-    var scale = vidHeight / 832; // 假设基准高度为1080px
+    var scale = vidHeight / 822; // 假设基准高度为1080px
     
     // 固定控件尺寸
     const CONTROLS = {

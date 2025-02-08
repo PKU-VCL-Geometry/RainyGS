@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="RainyGS: Efficient Rain Synthesis with Physically-Based Gaussian Splatting.">
+  <meta name="keywords" content="Novel View Synthesis, Weather Simulation, 3D Gaussian Splatting">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RainyGS: Efficient Rain Synthesis with Physically-Based Gaussian Splatting</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="static/js/script.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">RainyGS: Efficient Rain Synthesis with Physically-Based Gaussian Splatting</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://daiqy.github.io/" target="_blank">Qiyu Dai</a><sup>1,2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://starryuniv.cn/" target="_blank">Xingyu Ni</a><sup>1,2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://qianfanshen.github.io/" target="_blank">Qianfan Shen</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://rachelcmy.github.io/" target="_blank">Mengyu Chu</a><sup>1,2†</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://wenzhengchen.github.io/" target="_blank">Wenzheng Chen</a><sup>1†</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://baoquanchen.info/" target="_blank">Baoquan Chen</a><sup>1,2†</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Peking University</span>
+            <span class="author-block"><sup>2</sup>State Key Laboratory of General AI</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>equal contributions, <sup>†</sup>corresponding author</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="./static/paper.pdf" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://github.com/PKU-VCL-Geometry/rainygs" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper (Comming Soon)</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/PKU-VCL-Geometry/rainygs" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Comming Soon)</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Visual Results: Waymo Scenes</h2>
+    <div class="content has-text-justified">
+      <p>
+        <b>Rainy Weather Synthesis for Waymo Scenes.</b> Our method facilitates the efficient transformation of continuous autonomous driving scenes into rainy weather conditions, enabling
+        robustness testing of autonomous driving perception algorithms. Additionally, it offers a novel framework for synthesizing adverse weather data in autonomous driving.
+      </p>
+    </div>
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+              <div id="waymo181" class="video-compare-container">
+              <video class="video" id="waymo181_video" loop="" playsinline="" autoplay="" muted=""
+                src="./static/example_videos/waymo181/full.mp4"
+                onplay="resizeAndPlay(this)" 
+                style="width: 100%; height: 100%; object-fit: cover;
+                      background-image: url('./static/videos/loading.gif'); 
+                      background-size: 50%; 
+                      background-position: center; 
+                      background-repeat: no-repeat;">
+              </video>
+              <canvas class="videoMerge" id="waymo181_videoMerge"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+              <div id="waymo362" class="video-compare-container">
+              <video class="video" id="waymo362_video" loop="" playsinline="" autoplay="" muted=""
+                src="./static/example_videos/waymo362/full.mp4"
+                onplay="resizeAndPlay(this)"
+                style="width: 100%; height: 100%; object-fit: cover;
+                    background-image: url('./static/videos/loading.gif'); 
+                    background-size: 50%; 
+                    background-position: center; 
+                    background-repeat: no-repeat;">
+              </video>
+              <canvas class="videoMerge" id="waymo362_videoMerge"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Comparisons of the SOTA Video Generative Model</h2>
+    <div class="content has-text-justified">
+      <p>
+        We compare with Runway Gen-3 Alpha Turbo, a leading model for video-to-video generation. 
+        Video generation methods lack 3D consistency and distort scene geometry, while its dynamic rain is unrealistic. 
+        In contrast, RainyGS maintains 3D consistency and generates realistic, evolving water droplets and puddles.
+      </p>
+      <div class="video-compare-container">
+        <video autoplay muted loop playsinline
+               style="width: 100%; height: 100%; object-fit: cover;
+                  background-image: url('./static/videos/loading.gif'); 
+                  background-size: 50%; 
+                  background-position: center; 
+                  background-repeat: no-repeat;">
+          <!-- <source src="./static/videos/baseline.mp4" type="video/mp4"> -->
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" target="_blank"
+         href="./static/paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/PKU-VCL-Geometry/rainygs" target="_blank" external-link">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p style="text-align: center;">
+            This website is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. Thanks for the author's great work.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
