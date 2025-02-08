@@ -189,6 +189,7 @@ function removeLoading(videoId) {
     if (loadingGif) {
       // Use opacity transition to ensure smooth disappearance
       loadingGif.style.opacity = 0;
+      loadingGif.style.visibility = 'hidden';
       loadingGif.style.display = 'none';
     }
 }
