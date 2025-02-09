@@ -2,12 +2,6 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
-/* .content.has-text-justified {
-  margin-bottom: 1.0rem;
-  padding: 0;
-  min-height: 0;
-} */
-
 .footer .icon-link {
     font-size: 25px;
     color: #000;
@@ -173,10 +167,6 @@ body {
   background-size: cover;
 }
 
-.parent-video-compare-container {
-  width: 100%;
-  justify-content: center;
-}
 .video-compare-container {
   width: 100%;
   margin: 0 auto;
