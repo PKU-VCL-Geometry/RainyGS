@@ -246,21 +246,24 @@
         <b>Rain synthesis results on MipNeRF360 dataset.</b> Our approach achieves high-quality, realistic rain effects, including rain 
         streaks in the sky, water accumulation on surfaces, and reflection and refraction, etc., in a computationally efficient manner.
       </p>
-    </div>
+    
+
     <div class="columns is-centered">
 
       <div class="column">
         <div class="content">
           <div class="columns is-centered">
             <div class="column is-full-width">
-              <div id="treehill" class="video-compare-container">
-              <video class="video" id="treehill_video" loop="" playsinline="" autoplay="" muted=""
-                src="./static/example_videos/treehill/full.mp4"
-                poster="./static/videos/loading.gif"
-                onplay="resizeAndPlay(this)">
-              </video>
-              <canvas class="videoMerge" id="treehill_videoMerge"></canvas>
-              </div>
+              <!-- <div class="parent-video-compare-container"> -->
+                <div id="treehill" class="video-compare-container">
+                <video class="video" id="treehill_video" loop="" playsinline="" autoplay="" muted=""
+                  src="./static/example_videos/treehill/full.mp4"
+                  poster="./static/videos/loading.gif"
+                  onplay="resizeAndPlay(this)">
+                </video>
+                <canvas height="0" class="videoMerge" id="treehill_videoMerge"></canvas>
+                </div>
+              <!-- </div> -->
             </div>
           </div>
         </div>
@@ -277,7 +280,7 @@
                 poster="./static/videos/loading.gif"
                 onplay="resizeAndPlay(this)">
               </video>
-              <canvas class="videoMerge" id="bicycle_videoMerge"></canvas>
+              <canvas height="0" class="videoMerge" id="bicycle_videoMerge"></canvas>
               <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="bicycle_loading"> -->
               </div>
             </div>
@@ -287,6 +290,9 @@
 
     
     </div>
+
+    </div>
+
   </div>
 </section>
 
@@ -299,7 +305,7 @@
         <b>Rain synthesis results on Tanks and Temples dataset.</b> Our method delivers high-quality and realistic rain effects, 
         such as rain streaks in the sky, water pooling on surfaces, and realistic reflections and refractions, while maintaining computational efficiency.
       </p>
-    </div>
+
     <div class="columns is-centered">
 
       <div class="column">
@@ -312,7 +318,7 @@
                 width=100% height=100% object-fit=cover poster="./static/videos/loading.gif"
                 onplay="resizeAndPlay(this)">
               </video>
-              <canvas class="videoMerge" id="family_videoMerge"></canvas>
+              <canvas height="0" class="videoMerge" id="family_videoMerge"></canvas>
               <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="family_loading"> -->
               </div>
             </div>
@@ -330,13 +336,15 @@
                 width=100% height=100% object-fit=cover poster="./static/videos/loading.gif"
                 onplay="resizeAndPlay(this)">
               </video>
-              <canvas class="videoMerge" id="truck_videoMerge"></canvas>
+              <canvas height="0" class="videoMerge" id="truck_videoMerge"></canvas>
               <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="truck_loading"> -->
               </div>
             </div>
           </div>
         </div>
       </div>
+
+    </div>
 
     </div>
   </div>
@@ -350,7 +358,7 @@
         <b>Rainy Weather Synthesis for Waymo Scenes.</b> Our method facilitates the efficient transformation of continuous autonomous driving scenes into rainy weather conditions, enabling
         robustness testing of autonomous driving perception algorithms. Additionally, it offers a novel framework for synthesizing adverse weather data in autonomous driving.
       </p>
-    </div>
+    
 
     <div class="columns is-centered">
 
@@ -364,7 +372,7 @@
                 poster="./static/videos/loading.gif"
                 onplay="resizeAndPlay(this)">
               </video>
-              <canvas class="videoMerge" id="waymo181_videoMerge"></canvas>
+              <canvas height="0" class="videoMerge" id="waymo181_videoMerge"></canvas>
               <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="waymo181_loading"> -->
               </div>
             </div>
@@ -382,7 +390,7 @@
                 poster="./static/videos/loading.gif"
                 onplay="resizeAndPlay(this)">
               </video>
-              <canvas class="videoMerge" id="waymo362_videoMerge"></canvas>
+              <canvas height="0" class="videoMerge" id="waymo362_videoMerge"></canvas>
               <!-- <img src="./static/videos/loading.gif" alt="loading" class="loading-gif" id="waymo362_loading"> -->
               </div>
             </div>
@@ -393,6 +401,7 @@
 
     </div>
 
+    </div>
   </div>
 </section>
 
