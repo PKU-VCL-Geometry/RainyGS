@@ -1,7 +1,7 @@
 // This is based on: http://thenewcode.com/364/Interactive-Before-and-After-Video-Comparison-in-HTML5-Canvas
 // With additional modifications based on: https://jsfiddle.net/7sk5k4gp/13/
 
-function playVids(videoId) {
+function playVids(videoId, clientHeight) {
     var videoMerge = document.getElementById(videoId + "Merge");
     var vid = document.getElementById(videoId);
 
@@ -14,16 +14,17 @@ function playVids(videoId) {
     //     console.log("vidHeight: ", vid.videoHeight);
     // }
 
-    // 计算缩放比例
+    // hyperpara: 缩放比例 (假设基准高度为822px)
     if (videoId.includes("waymo")) {    
-        var scale = 0.98 * vidHeight / 822; // 手调一下
+        var scale = 0.977 * vidHeight / 822;
     } else if (videoId.includes("family") || videoId.includes("truck")) {
-        var scale = 1.1 * vidHeight / 822; // 手调一下
+        var scale = 1.07 * vidHeight / 822;
     } else {
-        var scale = vidHeight / 822; // 假设基准高度为822px
-    }
-    
-    // 固定控件尺寸
+        var scale = vidHeight / 822;
+    }   
+    // var scale = 150 / clientHeight;
+
+    // hyperpara: 固定控件尺寸
     const CONTROLS = {
         circle: {
             radius: 53 * scale,
@@ -193,11 +194,13 @@ function resizeAndPlay(element) {
     //     console.log("vidHeight: ", element.videoHeight);
     //     console.log("视频实际显示尺寸：", element.clientWidth, element.clientHeight);
     // }
+    clientHeight = element.clientHeight
+
     cv.width = element.videoWidth / 2;
     cv.height = element.videoHeight;
     element.play();
     element.style.height = "0px";
-    playVids(element.id);
+    playVids(element.id, clientHeight);
 }
 
 function removeLoading(videoId) {
