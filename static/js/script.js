@@ -9,12 +9,7 @@ function playVids(videoId, clientHeight) {
     var vidWidth = vid.videoWidth / 2;
     var vidHeight = vid.videoHeight;
 
-    // if (videoId === "treehill_video") {
-    //     console.log("vidWidth: ", vid.videoWidth);
-    //     console.log("vidHeight: ", vid.videoHeight);
-    // }
-
-    // hyperpara: 缩放比例 (假设基准高度为822px)
+    // hyperparameter: scaling ratio (assuming base height is 822px)
     if (videoId.includes("waymo")) {    
         var scale = 0.977 * vidHeight / 822;
     } else if (videoId.includes("family") || videoId.includes("truck")) {
@@ -24,7 +19,7 @@ function playVids(videoId, clientHeight) {
     }   
     // var scale = 150 / clientHeight;
 
-    // hyperpara: 固定控件尺寸
+    // hyperparameter: fixed control sizes
     const CONTROLS = {
         circle: {
             radius: 53 * scale,
@@ -71,7 +66,7 @@ function playVids(videoId, clientHeight) {
             mergeContext.drawImage(vid, colStart + vidWidth, 0, colWidth, vidHeight, colStart, 0, colWidth, vidHeight);
             requestAnimationFrame(drawLoop);
 
-            // 分割线
+            // Divider line
             mergeContext.beginPath();
             var circleCenterX = vidWidth * position;
             mergeContext.moveTo(circleCenterX, 0);
@@ -83,7 +78,7 @@ function playVids(videoId, clientHeight) {
             mergeContext.lineWidth = CONTROLS.circle.lineWidth;
             mergeContext.stroke();
 
-            // 圆形
+            // Circle
             mergeContext.beginPath();
             mergeContext.arc(circleCenterX, vidHeight / 2, CONTROLS.circle.radius, 0, Math.PI * 2, false);
             mergeContext.fillStyle = "rgba(255, 255, 255, 0.2)";
@@ -92,8 +87,8 @@ function playVids(videoId, clientHeight) {
             mergeContext.strokeStyle = "#FFFFFF";
             mergeContext.stroke();
 
-            // 箭头
-            // 左箭头
+            // Arrows
+            // Left arrow
             mergeContext.beginPath();
             mergeContext.moveTo(circleCenterX - CONTROLS.arrows.size, vidHeight / 2 - CONTROLS.arrows.size);
             mergeContext.lineTo(circleCenterX - CONTROLS.arrows.offset, vidHeight / 2);
@@ -102,7 +97,7 @@ function playVids(videoId, clientHeight) {
             mergeContext.fillStyle = "#FFFFFF";
             mergeContext.fill();
 
-            // 右箭头
+            // Right arrow
             mergeContext.beginPath();
             mergeContext.moveTo(circleCenterX + CONTROLS.arrows.size, vidHeight / 2 - CONTROLS.arrows.size);
             mergeContext.lineTo(circleCenterX + CONTROLS.arrows.offset, vidHeight / 2);
@@ -111,10 +106,10 @@ function playVids(videoId, clientHeight) {
             mergeContext.fillStyle = "#FFFFFF";
             mergeContext.fill();
 
-            // 文本标签
+            // Text labels
             const rectY = vidHeight - CONTROLS.labels.bottomOffset;
             
-            // 左侧标签
+            // Left label
             mergeContext.save();
             mergeContext.beginPath();
             mergeContext.rect(0, 0, vidWidth * position - CONTROLS.circle.lineWidth / 2, vidHeight);
@@ -138,7 +133,7 @@ function playVids(videoId, clientHeight) {
             );
             mergeContext.restore();
 
-            // 右侧标签
+            // Right label
             mergeContext.save();
             mergeContext.beginPath();
             mergeContext.rect(vidWidth * position + CONTROLS.circle.lineWidth / 2, 0, vidWidth - vidWidth * position, vidHeight);
@@ -192,7 +187,7 @@ function resizeAndPlay(element) {
     // if (element.id === "treehill_video") {
     //     console.log("vidWidth: ", element.videoWidth);
     //     console.log("vidHeight: ", element.videoHeight);
-    //     console.log("视频实际显示尺寸：", element.clientWidth, element.clientHeight);
+    //     console.log("Video actual display size:", element.clientWidth, element.clientHeight);
     // }
     clientHeight = element.clientHeight
 
@@ -202,6 +197,7 @@ function resizeAndPlay(element) {
     element.style.height = "0px";
     playVids(element.id, clientHeight);
 }
+
 
 function removeLoading(videoId) {
     var loadingGif = document.getElementById(videoId + '_loading');
