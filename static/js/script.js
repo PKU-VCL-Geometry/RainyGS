@@ -9,8 +9,19 @@ function playVids(videoId) {
     var vidWidth = vid.videoWidth / 2;
     var vidHeight = vid.videoHeight;
 
+    // if (videoId === "treehill_video") {
+    //     console.log("vidWidth: ", vid.videoWidth);
+    //     console.log("vidHeight: ", vid.videoHeight);
+    // }
+
     // 计算缩放比例
-    var scale = vidHeight / 822; // 假设基准高度为1080px
+    if (videoId.includes("waymo")) {    
+        var scale = 0.98 * vidHeight / 822; // 手调一下
+    } else if (videoId.includes("family") || videoId.includes("truck")) {
+        var scale = 1.1 * vidHeight / 822; // 手调一下
+    } else {
+        var scale = vidHeight / 822; // 假设基准高度为822px
+    }
     
     // 固定控件尺寸
     const CONTROLS = {
@@ -177,6 +188,11 @@ Number.prototype.clamp = function(min, max) {
     
 function resizeAndPlay(element) {
     var cv = document.getElementById(element.id + "Merge");
+    // if (element.id === "treehill_video") {
+    //     console.log("vidWidth: ", element.videoWidth);
+    //     console.log("vidHeight: ", element.videoHeight);
+    //     console.log("视频实际显示尺寸：", element.clientWidth, element.clientHeight);
+    // }
     cv.width = element.videoWidth / 2;
     cv.height = element.videoHeight;
     element.play();
